@@ -29,6 +29,7 @@ services:
     working_dir: *default-workdir
     command: -color
     tty: *tty
+    user: root # TODO ... do not run as root !!!!!
 
   lint-filenames:
     image: lslintorg/ls-lint:1.11.2
@@ -49,3 +50,4 @@ services:
     working_dir: *default-workdir
     command: --config .lychee.toml .
     tty: *tty
+    user: root # TODO ... do not run as root !!!!!
