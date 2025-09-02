@@ -9,16 +9,12 @@
 		".github/workflows/assets",
 
         ".assets",
-
         ".task/**",
-
 		".vscode",
 
-		"docs",
-		"docs/_assets/**",
-		"docs/about/**",
-		"docs/usage/**",
-		"target/docs/site/**",
+        "components",
+        "components/metrics",
+        "components/telemetry",
 
 		"node_modules/**",
 		"public/**",

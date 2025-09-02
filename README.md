@@ -1,64 +1,28 @@
-# Template Repository
+# Telemetry
 
-[doc-website]: https://sommerfeld-io.github.io/template-repository
-[github-repo]: https://github.com/sommerfeld-io/template-repository
-[file-issues]: https://github.com/sommerfeld-io/template-repository/issues
-[project-board]: https://github.com/orgs/sommerfeld-io/projects/1/views/1
+Lorem ipsum ...
 
-This project is a template repository for creating new repositories with a pre-defined structure. This template repository is relevant for [sommerfeld.io](https://github.com/sommerfeld-io) projects.
+- [How to Contribute](https://github.com/sommerfeld-io/.github/blob/main/CONTRIBUTING.md)
 
-!!! warning "Todo - Remove if not needed"
-    Short introduction to the project, its goals, and objectives.
+<!-- ![Project Logo](https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/main/.assets/logo.png) -->
 
-- [Documentation Website][doc-website]
-- [Github Repository][github-repo]
-- [Sonarcloud Code Quality and Security Analysis](https://sonarcloud.io/project/overview?id=sommerfeld-io_template-repository)
-- [Where to file issues][file-issues]
-- [Project Board for Issues and Pull Requests][project-board]
+## Stack: Metrics
 
-## Requirements and Features
+The `metrics` Docker stack (see [`components/metrics`](components/metrics) folder) is a Docker Compose configuration that manages all of the needed exporters to monitor system metrics with Prometheus and Grafana. By using the`metrics` Docker stack, you can quickly and easily deploy all of the necessary components for monitoring your system metrics. This includes exporters for various system metrics, such as CPU usage, disk usage, and network activity.
 
-This section outlines the basic requirements and features of the project. These requirements serve as a guideline for the development of the application and provide a clear overview of the expected functionality.
+| Component     | Port | URL                     |
+| ------------- | ---- | ----------------------- |
+| node_exporter | 9100 | <http://localhost:9100> |
+| cAdvisor      | 9110 | <http://localhost:9110> |
 
-!!! warning "Todo - Remove if not needed"
-    Short description of the functional requirements, driving forces, extract (or abstract) of requirements. Maybe link to GitHub issues (which are written as user stories) or to link some BDD-style executable specifications.
+## Stack: Telemetry
 
-## Usage
+Lorem ipsum ...
 
-!!! warning "Todo - Remove if not needed"
-    The basic commands to get any response from the system. This could be a simple `docker run ...` command.
+## Risks and Technical Debts
 
-## Scope and Context
-
-!!! warning "Todo - Remove if not needed"
-    Who is the target audience of the software? Who are the stakeholders? Use a list when stakeholders are clearly identifiable. Otherwise write a short description (e.g. when stakeholders are possibly everybody because the software is offered as open source to the whole world). Scope and context delimits your system (i.e. your scope) from all its communication partners (neighboring systems and users, i.e. the context  of your system). It thereby specifies the external interfaces. If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
-
-## Architecture Constraints
-
-!!! warning "Todo - Remove if not needed"
-    Any requirement that constraints software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies. Only list constraints that are not covered in the [Development Guide](https://github.com/sommerfeld-io/.github/blob/main/docs/development-guide.md).
-
-## Building Block View
-
-!!! warning "Todo - Remove if not needed"
-    The building block view shows the components of the system and their relationships. It is a high-level view of the system architecture. Maybe think of C4 model diagrams. Do not write too much text here.
-
-```kroki-ditaa
-
-+--------+    +--------+
-|        |    |        |
-|  Web   |    |  API   |
-|        |    |        |
-+--+-----+    +--+-----+
-   |             |
-   |             |
-+--+-----+    +--+-----+
-|        |    |        |
-|  DB    |    |  DB    |
-|        |    |        |
-+--------+    +--------+
-```
+All issues labeled as `risk` (= some sort of risk or a technical debt) or `security` (= disclosed security issues - e.g. CVEs) [are tracked as GitHub issue](https://github.com/sommerfeld-io/telemetry/issues?q=is%3Aissue+label%3Asecurity%2Crisk+is%3Aopen) and carry the respective label.
 
 ## Contact
 
-Feel free to contact me via <sebastian@sommerfeld.io> or [raise an issue in this repository][file-issues].
+Feel free to contact me via <sebastian@sommerfeld.io> or [raise an issue in this repository](https://github.com/sommerfeld-io/telemetry/issues).
