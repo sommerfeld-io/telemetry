@@ -10,3 +10,13 @@ updates:
     directory: .devcontainer
     schedule:
       interval: weekly
+
+  - package-ecosystem: docker-compose
+    directory: /
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: docker-compose
+    directory: /components/metrics
+    schedule:
+      interval: weekly
