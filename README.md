@@ -1,10 +1,18 @@
 # Telemetry
 
-Lorem ipsum ...
+A simple telemetry setup using Docker Compose. This repo provides stacks to run Prometheus. Loki and Grafana and to expose metrics.
 
 - [How to Contribute](https://github.com/sommerfeld-io/.github/blob/main/CONTRIBUTING.md)
 
 <!-- ![Project Logo](https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/main/.assets/logo.png) -->
+
+## Warning: This Setup is intended for our infrastructure
+
+Feel free to use this repository as a starting point for your own configuration. This config references hosts and servers by name simply starting the services will not work for you. You need to adjust at least the host names of the machines you want to observe.
+
+## Stack: Telemetry
+
+Lorem ipsum ...
 
 ## Stack: Metrics
 
@@ -14,10 +22,6 @@ The `metrics` Docker stack (see [`components/metrics`](components/metrics) folde
 | ------------- | ---- | ----------------------- |
 | node_exporter | 9100 | <http://localhost:9100> |
 | cAdvisor      | 9110 | <http://localhost:9110> |
-
-## Stack: Telemetry
-
-Lorem ipsum ...
 
 ## Risks and Technical Debts
 
