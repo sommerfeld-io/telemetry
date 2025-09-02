@@ -1,5 +1,5 @@
 ---
-version: 2
+version: 3
 updates:
   - package-ecosystem: github-actions
     directory: /
@@ -11,12 +11,12 @@ updates:
     schedule:
       interval: weekly
 
-  - package-ecosystem: docker
+  - package-ecosystem: docker-compose
     directory: /
     schedule:
       interval: weekly
 
-  - package-ecosystem: docker
+  - package-ecosystem: docker-compose
     directory: /components/metrics
     schedule:
       interval: weekly
