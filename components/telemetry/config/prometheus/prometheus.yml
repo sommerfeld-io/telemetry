@@ -1,6 +1,6 @@
 ---
 global:
-  scrape_interval: 5s
+  scrape_interval: 15s
   external_labels:
     monitor: 'prometheus-grafana-stack'
 scrape_configs:
@@ -9,7 +9,7 @@ scrape_configs:
       - targets: ['localhost:9090']
 
   - job_name: 'workstation-and-raspi'
-    scrape_interval: 5s
+    scrape_interval: 15s
     static_configs:
       - targets:
           - caprica.fritz.box:9100
@@ -28,6 +28,7 @@ scrape_configs:
     metrics_path: /probe
     params:
       module: [http_2xx]
+    scrape_interval: 60s
     static_configs:
       - targets:
           - www.fb-brunnenbau.de
