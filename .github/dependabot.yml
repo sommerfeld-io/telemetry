@@ -20,3 +20,8 @@ updates:
     directory: /components/metrics
     schedule:
       interval: weekly
+
+  - package-ecosystem: docker-compose
+    directory: /components/telemetry
+    schedule:
+      interval: weekly

@@ -1,5 +1,4 @@
 ---
-# see docs/api-docs/docker/ops.md
 services:
 
   node_exporter:

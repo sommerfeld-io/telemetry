@@ -14,13 +14,20 @@ Feel free to use this repository as a starting point for your own configuration.
 
 Lorem ipsum ...
 
+| Component         | Port | URL                     | Info          |
+| ----------------- | ---- | ----------------------- | ------------- |
+| Prometheus        | 9090 | <http://localhost:9100> | -             |
+| Grafana           | 3000 | <http://localhost:9110> | -             |
+| Blackbox Exporter | 9115 | <http://localhost:9990> | -             |
+| nginx             | 80   | <http://localhost>      | Reverse Proxy |
+
 ## Stack: Metrics
 
 The `metrics` Docker stack (see [`components/metrics`](components/metrics) folder) is a Docker Compose configuration that manages all of the needed exporters to monitor system metrics with Prometheus and Grafana. By using the`metrics` Docker stack, you can quickly and easily deploy all of the necessary components for monitoring your system metrics. This includes exporters for various system metrics, such as CPU usage, disk usage, and network activity.
 
 | Component     | Port | URL                     |
 | ------------- | ---- | ----------------------- |
-| node_exporter | 9100 | <http://localhost:9100> |
+| Node Exporter | 9100 | <http://localhost:9100> |
 | cAdvisor      | 9110 | <http://localhost:9110> |
 
 ## Risks and Technical Debts
