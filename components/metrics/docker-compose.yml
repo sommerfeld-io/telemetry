@@ -12,6 +12,11 @@ services:
     volumes:
       - /:/host:ro,rslave
       - /etc/timezone:/etc/timezone:ro
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:9100/metrics"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.52.1
@@ -26,3 +31,8 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
     privileged: true
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/healthz"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
