@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 10,
   "links": [],
   "panels": [
     {
@@ -405,7 +405,7 @@
         ]
       },
       "gridPos": {
-        "h": 22,
+        "h": 21,
         "w": 24,
         "x": 0,
         "y": 0
@@ -693,7 +693,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 21
       },
       "id": 4,
       "options": {
@@ -738,7 +738,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 30
       },
       "id": 8,
       "panels": [
@@ -860,5 +860,5 @@
   "timezone": "",
   "title": "Blackbox Exporter (HTTP prober)",
   "uid": "blackbox-exporter",
-  "version": 1
+  "version": 2
 }
