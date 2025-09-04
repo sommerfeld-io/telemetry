@@ -19,6 +19,11 @@ services:
       - "--storage.tsdb.retention.time=360d"
     ports:
       - 9090:9090
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:9090/-/healthy"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
 
   grafana:
     image: grafana/grafana:12.1.1
@@ -37,6 +42,11 @@ services:
       - grafana_data:/var/lib/grafana
     ports:
       - 3000:3000
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
 
   blackbox_exporter:
     image: prom/blackbox-exporter:v0.27.0
@@ -52,3 +62,8 @@ services:
       - ./config/prometheus/blackbox-exporter.yml:/etc/prometheus/blackbox-exporter.yml:ro
     command:
       - "--config.file=/etc/prometheus/blackbox-exporter.yml"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:9115"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
