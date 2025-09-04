@@ -6,7 +6,11 @@ providers:
     orgId: 1
     folder: ''
     type: file
-    disableDeletion: false
-    editable: true
     options:
       path: /etc/grafana/provisioning/dashboards
+  - name: 'cadvisor'
+    orgId: 1
+    folder: 'cAdvisor'
+    type: file
+    options:
+      path: /etc/grafana/provisioning/dashboards/cadvisor

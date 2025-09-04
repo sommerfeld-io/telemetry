@@ -18,6 +18,7 @@
         "components/telemetry/config",
         "components/telemetry/config/grafana",
         "components/telemetry/config/grafana/dashboards",
+        "components/telemetry/config/grafana/dashboards/*",
         "components/telemetry/config/grafana/datasources",
         "components/telemetry/config/prometheus",
 
