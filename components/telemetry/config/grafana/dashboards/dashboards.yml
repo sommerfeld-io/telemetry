@@ -14,3 +14,9 @@ providers:
     type: file
     options:
       path: /etc/grafana/provisioning/dashboards/cadvisor
+  - name: 'system'
+    orgId: 1
+    folder: 'system'
+    type: file
+    options:
+      path: /etc/grafana/provisioning/dashboards/system
