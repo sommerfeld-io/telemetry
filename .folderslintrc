@@ -17,6 +17,7 @@
         "components/telemetry",
         "components/telemetry/config",
         "components/telemetry/config/grafana",
+        "components/telemetry/config/grafana/alerting",
         "components/telemetry/config/grafana/dashboards",
         "components/telemetry/config/grafana/dashboards/*",
         "components/telemetry/config/grafana/datasources",
