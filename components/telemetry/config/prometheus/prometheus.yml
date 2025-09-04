@@ -8,7 +8,7 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: 'workstation-and-raspi'
+  - job_name: 'system-metrics'
     scrape_interval: 15s
     static_configs:
       - targets:
