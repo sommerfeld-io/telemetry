@@ -12,14 +12,18 @@ Feel free to use this repository as a starting point for your own configuration.
 
 ## Stack: Telemetry
 
-Lorem ipsum ...
+The Docker Compose stack is designed to run on a dedicated Raspberry Pi, serving as the central monitoring server for the homelab environment. The stack continuously collects, stores, and visualizes metrics from various devices and services across the network. This setup provides a solution for tracking system health, performance, and service availability in the self-hosted infrastructure.
 
 | Component         | Port | URL                     | Info          |
 | ----------------- | ---- | ----------------------- | ------------- |
 | Prometheus        | 9090 | <http://localhost:9100> | -             |
 | Grafana           | 3000 | <http://localhost:9110> | -             |
 | Blackbox Exporter | 9115 | <http://localhost:9990> | -             |
-| nginx             | 80   | <http://localhost>      | Reverse Proxy |
+
+### How to start the `telemetry` stack
+
+- To start the telemetry stack, you need a GitHub Personal Access Token (classic). For required scopes, see the "Permissions" section in the [Grafana documentation](https://grafana.com/docs/plugins/grafana-github-datasource/latest/setup/token/#permissions).
+- Run [the stack](components/telemetry/docker-compose.yml) using `docker compose up` in the `components/telemetry` folder.
 
 ## Stack: Metrics
 
@@ -29,6 +33,10 @@ The `metrics` Docker stack (see [`components/metrics`](components/metrics) folde
 | ------------- | ---- | ----------------------- |
 | Node Exporter | 9100 | <http://localhost:9100> |
 | cAdvisor      | 9110 | <http://localhost:9110> |
+
+### How to start the `metrics` stack
+
+- Run [the stack](components/metrics/docker-compose.yml) using `docker compose up` in the `components/metrics` folder.
 
 ## Risks and Technical Debts
 
