@@ -20,6 +20,8 @@ The Docker Compose stack is designed to run on a dedicated Raspberry Pi, serving
 | Grafana           | 3000 | <http://localhost:9110> | -             |
 | Blackbox Exporter | 9115 | <http://localhost:9990> | -             |
 
+Grafana uses a custom entrypoint script to install the [GitHub Datasource Plugin](https://grafana.com/docs/plugins/grafana-github-datasource/latest) if not already installed.
+
 ### How to start the `telemetry` stack
 
 - To start the telemetry stack, you need a GitHub Personal Access Token (classic). For required scopes, see the "Permissions" section in the [Grafana documentation](https://grafana.com/docs/plugins/grafana-github-datasource/latest/setup/token/#permissions).
