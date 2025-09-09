@@ -6,7 +6,7 @@ A simple telemetry setup using Docker Compose. This repo provides stacks to run 
 
 ## Warning: This Setup is intended for our infrastructure
 
-Feel free to use this repository as a starting point for your own configuration. This config references hosts and servers by name simply starting the services will not work for you. You need to adjust at least the host names of the machines you want to observe.
+Feel free to use this repository as a starting point for your own configuration. However, this config references hosts and servers by name. So simply starting the services will not work for you. You need to adjust at least the host names of the machines you want to observe.
 
 ## Stack: `telemetry`
 
@@ -20,9 +20,13 @@ The Docker Compose stack is designed to run on a dedicated Raspberry Pi, serving
 
 Grafana uses a custom entrypoint script to install the [GitHub Datasource Plugin](https://grafana.com/docs/plugins/grafana-github-datasource/latest) if not already installed.
 
+The Github Datasource Plugin requires a GitHub Personal Access Token (classic) to access the GitHub API. For required scopes, see the "Permissions" section in the [Grafana documentation](https://grafana.com/docs/plugins/grafana-github-datasource/latest/setup/token/#permissions).
+
+> **:bulb: CAUTION** -- Remember to adjust the token in the Grafana provisioning file `components/telemetry/config/grafana/provisioning/datasources/ds-github.yml` to match your Github repositories.
+
 ### How to start the `telemetry` stack
 
-- To start the telemetry stack, you need a GitHub Personal Access Token (classic). For required scopes, see the "Permissions" section in the [Grafana documentation](https://grafana.com/docs/plugins/grafana-github-datasource/latest/setup/token/#permissions).
+- Setup a GitHub Personal Access Token (classic). <!-- TODO ... document how to do this and how/where to store the token -->
 - Run [the stack](components/telemetry/docker-compose.yml) using `docker compose up` in the `components/telemetry` folder.
 
 ## Stack: `metrics`
