@@ -3,7 +3,7 @@ apiVersion: 1
 groups:
   - orgId: 1
     name: node-exporter
-    folder: system
+    folder: Nodes
     interval: 5m
     rules:
       # -----------------------------------------------------------------------
