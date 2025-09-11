@@ -9,5 +9,5 @@ datasources:
     jsonData:
       selectedAuthType: personal-access-token
     secureJsonData:
-      accessToken: ... # put your personal access token here
+      accessToken: ${GITHUB_PAT}
     editable: true

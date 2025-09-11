@@ -11,6 +11,8 @@ ls:
   .tf: kebab-case
   .yml: kebab-case
   .yaml: kebab-case
+  .override.yml: kebab-case
+  .override.yaml: kebab-case
   .toml: kebab-case
   .feature: kebab-case
 

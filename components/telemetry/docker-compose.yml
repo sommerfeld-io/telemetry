@@ -33,6 +33,22 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_AUTH_ANONYMOUS_ENABLED=true
+      # git reset --soft HEAD~1
+      - GITHUB_PAT=tbd # put your personal access token here
+      # ! Use docker secrets to store the token? Create the secret file, which contains only the
+      # ! token, through Ansible and Ansible Vault in configs-homelab repo and reference from here.
+      # ! An absolute path from somewhere on the machine does not feel right either. Also this would
+      # ! make this repo depend on another repo, though. I prefer this repo being self-contained.
+      # ! So how can I manage the PAT securely without hardcoding it here?
+      # !
+      # ! * Maybe create a docker-compose.override.yml file that is not checked in and is created
+      # !   through Ansible Vault. But still I would rely on a file that is managed from outside.
+      # !   https://claude.ai/chat/5f47ae62-f6ab-48b7-8dcd-a3b48239b8ad
+      # !   When doing this, the docker-compose.override.yml file is created through Ansible from
+      # !   the configs-homelab repo, which is encrypted with Ansible Vault. we need a dedicated
+      # !   .gitignore rule to avoid checking in the override file inside `components/telemetry`.
+      # !   This file should clearly document what the ignored file is for and should look like.
+      # !   A GitHub Actions workflow should ensure that the override file is not checked in !!!
     depends_on:
       - prometheus
     volumes:

@@ -20,13 +20,12 @@ The Docker Compose stack is designed to run on a dedicated Raspberry Pi, serving
 
 Grafana uses a custom entrypoint script to install the [GitHub Datasource Plugin](https://grafana.com/docs/plugins/grafana-github-datasource/latest) if not already installed.
 
-The Github Datasource Plugin requires a GitHub Personal Access Token (classic) to access the GitHub API. For required scopes, see the "Permissions" section in the [Grafana documentation](https://grafana.com/docs/plugins/grafana-github-datasource/latest/setup/token/#permissions).
-
-> **:bulb: CAUTION** -- Remember to adjust the token in the Grafana provisioning file `components/telemetry/config/grafana/provisioning/datasources/ds-github.yml` to match your Github repositories.
-
 ### How to start the `telemetry` stack
 
-- Setup a GitHub Personal Access Token (classic). <!-- TODO ... document how to do this and how/where to store the token -->
+- The Github Datasource requires a GitHub Personal Access Token (classic) to access the GitHub API. For required scopes, see the ["Permissions" section in the Grafana documentation](https://grafana.com/docs/plugins/grafana-github-datasource/latest/setup/token/#permissions).
+    - Setup a GitHub Personal Access Token (classic).
+    - Adjust the token in the Docker Compose file `components/telemetry/docker-compose.yml` to match your Github repositories.
+    - The environment variable will be passed to Grafana and used by the GitHub Datasource.
 - Run [the stack](components/telemetry/docker-compose.yml) using `docker compose up` in the `components/telemetry` folder.
 
 ## Stack: `metrics`
