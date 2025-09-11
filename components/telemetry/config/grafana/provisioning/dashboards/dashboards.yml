@@ -14,12 +14,6 @@ providers:
     type: file
     options:
       path: /etc/grafana/provisioning/dashboards/cadvisor
-  - name: 'github'
-    orgId: 1
-    folder: 'Github'
-    type: file
-    options:
-      path: /etc/grafana/provisioning/dashboards/github
   - name: 'nodes'
     orgId: 1
     folder: 'Nodes'

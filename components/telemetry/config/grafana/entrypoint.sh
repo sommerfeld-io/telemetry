@@ -1,11 +1,17 @@
 #!/bin/bash
 
-if [ ! -d "/var/lib/grafana/plugins/grafana-github-datasource" ]; then
-  echo "Installing Plugin: grafana-github-datasource"
-  grafana-cli plugins install grafana-github-datasource
-else
-  echo "Installing Plugin skipped (already installed): grafana-github-datasource"
-fi
+readonly PLUGINS=(
+  #'grafana-github-datasource'
+  # Add more plugin names here
+)
 
-# Run Grafana's default entrypoint
+for plugin in "${PLUGINS[@]}"; do
+  if [ ! -d "/var/lib/grafana/plugins/$plugin" ]; then
+    echo "[INFO] Plugin Installation: $plugin"
+    grafana-cli plugins install "$plugin"
+  else
+    echo "[INFO] Plugin Installation skipped (already installed): $plugin"
+  fi
+done
+
 exec /run.sh "$@"
