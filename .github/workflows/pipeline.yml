@@ -82,6 +82,30 @@ jobs:
             .task/.gitkeep,
             .vscode/settings.json
 
+  files-should-not-exist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+      - name: Fail if any forbidden file is present
+        run: |
+          files=(
+            "components/telemetry/docker-compose.override.yml"
+          )
+          found=false
+          for file in "${files[@]}"; do
+            if [ -f "$file" ]; then
+              echo "Error: $file must NOT be present in the repository."
+              found=true
+            fi
+          done
+          if [ "$found" = true ]; then
+            exit 1
+          else
+            echo "Validation passed: No forbidden files found."
+          fi
+        shell: bash
+
   # ----- Release stage ---------------------------------------------------------------------------
 
   release-code:
@@ -90,6 +114,7 @@ jobs:
       'lint',
       'shellcheck',
       'files-should-exist',
+      'files-should-not-exist',
     ]
     if: ${{ (github.actor != 'dependabot[bot]') && (github.ref == 'refs/heads/main') }}
     permissions:

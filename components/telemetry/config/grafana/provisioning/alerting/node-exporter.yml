@@ -3,12 +3,12 @@ apiVersion: 1
 groups:
   - orgId: 1
     name: node-exporter
-    folder: system
+    folder: Nodes
     interval: 5m
     rules:
       # -----------------------------------------------------------------------
       - uid: root-fs-used
-        title: Root FS Used
+        title: Root FS Used (%)
         condition: C
         data:
           - refId: A
@@ -82,7 +82,7 @@ groups:
           receiver: grafana-default-email
       # -----------------------------------------------------------------------
       - uid: ram-used
-        title: RAM Used
+        title: RAM Used (%)
         condition: C
         data:
           - refId: A
@@ -142,6 +142,75 @@ groups:
           __panelId__: "16"
           description: RAM usage is above 75%.
           summary: RAM usage is above threshold
+        labels:
+          notification/channel: google-chat
+          notification/enabled: "true"
+          severity: medium
+        isPaused: false
+        notification_settings:
+          receiver: grafana-default-email
+      # -----------------------------------------------------------------------
+      - uid: cpu-busy
+        title: CPU Busy (%)
+        condition: C
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 300
+              to: 0
+            datasourceUid: prometheus
+            model:
+              adhocFilters: []
+              datasource:
+                type: prometheus
+                uid: prometheus
+              editorMode: code
+              exemplar: false
+              expr: 100 * (1 - avg(rate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance))
+              format: time_series
+              instant: true
+              interval: ""
+              intervalFactor: 1
+              intervalMs: 15000
+              maxDataPoints: 43200
+              range: false
+              refId: A
+              step: 240
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              conditions:
+                - evaluator:
+                    params:
+                      - 90
+                    type: gt
+                  operator:
+                    type: and
+                  query:
+                    params:
+                      - C
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: __expr__
+              expression: A
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: C
+              type: threshold
+        dashboardUid: rYdddlPWk
+        panelId: 20
+        noDataState: NoData
+        execErrState: Error
+        for: 5m
+        annotations:
+          __dashboardUid__: rYdddlPWk
+          __panelId__: "20"
+          description: CPU usage is above 90%.
+          summary: CPU usage is above threshold
         labels:
           notification/channel: google-chat
           notification/enabled: "true"

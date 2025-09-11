@@ -1,27 +1,43 @@
 # Telemetry
 
-A simple telemetry setup using Docker Compose. This repo provides stacks to run Prometheus. Loki and Grafana and to expose metrics.
-
-- [How to Contribute](https://github.com/sommerfeld-io/.github/blob/main/CONTRIBUTING.md)
+A simple telemetry setup using Docker Compose. This repo provides stacks to run Prometheus, Loki and Grafana and to expose metrics.
 
 <!-- ![Project Logo](https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/main/.assets/logo.png) -->
 
-## Warning: This Setup is intended for our infrastructure
+## Warning: This setup is intended for our infrastructure
 
-Feel free to use this repository as a starting point for your own configuration. This config references hosts and servers by name simply starting the services will not work for you. You need to adjust at least the host names of the machines you want to observe.
+Feel free to use this repository as a starting point for your own configuration. However, this config references hosts and servers by name. So simply starting the services will not work for you. You need to adjust at least the host names of the machines you want to observe.
 
-## Stack: Telemetry
+## Stack: `telemetry`
 
-Lorem ipsum ...
+The `telemetry` Docker stack (see [`components/telemetry`](components/metrics) folder) is designed to run on a dedicated Raspberry Pi, serving as the central monitoring server for the homelab environment. The stack continuously collects, stores, and visualizes metrics from various devices and services across the network. This setup provides a solution for tracking system health, performance, and service availability in the self-hosted infrastructure.
 
-| Component         | Port | URL                     | Info          |
-| ----------------- | ---- | ----------------------- | ------------- |
-| Prometheus        | 9090 | <http://localhost:9100> | -             |
-| Grafana           | 3000 | <http://localhost:9110> | -             |
-| Blackbox Exporter | 9115 | <http://localhost:9990> | -             |
-| nginx             | 80   | <http://localhost>      | Reverse Proxy |
+| Component         | Port | URL                     |
+| ----------------- | ---- | ----------------------- |
+| Prometheus        | 9090 | <http://localhost:9090> |
+| Grafana           | 3000 | <http://localhost:3000> |
+| Blackbox Exporter | 9115 | <http://localhost:9115> |
 
-## Stack: Metrics
+Grafana uses a custom entrypoint script to install the [GitHub Datasource Plugin](https://grafana.com/docs/plugins/grafana-github-datasource/latest) if not already installed.
+
+### How to start the `telemetry` stack
+
+- The Github Datasource requires a GitHub Personal Access Token (classic) to access the GitHub API. For required scopes, see the ["Permissions" section in the Grafana documentation](https://grafana.com/docs/plugins/grafana-github-datasource/latest/setup/token/#permissions).
+    - Setup a GitHub Personal Access Token (classic).
+    - A `components/telemetry/docker-compose.override.yml` file in this repo is expected to provide the GitHub Personal Access Token (PAT) for provisioning the GitHub datasource in Grafana. If this token is missing, data cannot be queried from GitHub and related dashboards and alerts will not work. But Grafana will still start.
+
+      ```yaml
+      ---
+      services:
+        grafana:
+          environment:
+            - GITHUB_PAT=the_pat
+      ```
+
+    - The environment variable will be passed into Grafana for provisioning and used by the GitHub Datasource.
+- Run [the stack](components/telemetry/docker-compose.yml) using `docker compose up` in the `components/telemetry` folder.
+
+## Stack: `metrics`
 
 The `metrics` Docker stack (see [`components/metrics`](components/metrics) folder) is a Docker Compose configuration that manages all of the needed exporters to monitor system metrics with Prometheus and Grafana. By using the`metrics` Docker stack, you can quickly and easily deploy all of the necessary components for monitoring your system metrics. This includes exporters for various system metrics, such as CPU usage, disk usage, and network activity.
 
@@ -29,6 +45,10 @@ The `metrics` Docker stack (see [`components/metrics`](components/metrics) folde
 | ------------- | ---- | ----------------------- |
 | Node Exporter | 9100 | <http://localhost:9100> |
 | cAdvisor      | 9110 | <http://localhost:9110> |
+
+### How to start the `metrics` stack
+
+- Run [the stack](components/metrics/docker-compose.yml) using `docker compose up` in the `components/metrics` folder.
 
 ## Risks and Technical Debts
 
