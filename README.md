@@ -24,7 +24,7 @@ Grafana uses a custom entrypoint script to install the [GitHub Datasource Plugin
 
 - The Github Datasource requires a GitHub Personal Access Token (classic) to access the GitHub API. For required scopes, see the ["Permissions" section in the Grafana documentation](https://grafana.com/docs/plugins/grafana-github-datasource/latest/setup/token/#permissions).
     - Setup a GitHub Personal Access Token (classic).
-    - We expect a `docker-compose.override.yml` file in this repo that provides the GitHub Personal Access Token (PAT) for provisioning the GitHub datasource in Grafana. If this token is missing, data cannot be queried from GitHub and related dashboards and alerts will not work. But Grafana will still start.
+    - A `components/telemetry/docker-compose.override.yml` file in this repo is expected to provide the GitHub Personal Access Token (PAT) for provisioning the GitHub datasource in Grafana. If this token is missing, data cannot be queried from GitHub and related dashboards and alerts will not work. But Grafana will still start.
 
       ```yaml
       ---
@@ -34,7 +34,7 @@ Grafana uses a custom entrypoint script to install the [GitHub Datasource Plugin
             - GITHUB_PAT=the_pat
       ```
 
-    - The environment variable will be passed to Grafana and used by the GitHub Datasource.
+    - The environment variable will be passed into Grafana for provisioning and used by the GitHub Datasource.
 - Run [the stack](components/telemetry/docker-compose.yml) using `docker compose up` in the `components/telemetry` folder.
 
 ## Stack: `metrics`
