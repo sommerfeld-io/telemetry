@@ -10,7 +10,7 @@ Feel free to use this repository as a starting point for your own configuration.
 
 ## Stack: `telemetry`
 
-The Docker Compose stack is designed to run on a dedicated Raspberry Pi, serving as the central monitoring server for the homelab environment. The stack continuously collects, stores, and visualizes metrics from various devices and services across the network. This setup provides a solution for tracking system health, performance, and service availability in the self-hosted infrastructure.
+The `telemetry` Docker stack (see [`components/telemetry`](components/metrics) folder) is designed to run on a dedicated Raspberry Pi, serving as the central monitoring server for the homelab environment. The stack continuously collects, stores, and visualizes metrics from various devices and services across the network. This setup provides a solution for tracking system health, performance, and service availability in the self-hosted infrastructure.
 
 | Component         | Port | URL                     |
 | ----------------- | ---- | ----------------------- |
