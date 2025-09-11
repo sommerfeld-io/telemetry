@@ -2,7 +2,7 @@
 
 A simple telemetry setup using Docker Compose. This repo provides stacks to run Prometheus, Loki and Grafana and to expose metrics.
 
-<!-- ![Project Logo](https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/main/.assets/logo.png) -->
+![Project Logo](https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/main/.assets/logo.png)
 
 ## Warning: This setup is intended for our infrastructure
 
