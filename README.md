@@ -18,24 +18,9 @@ The `telemetry` Docker stack (see [`components/telemetry`](components/metrics) f
 | Grafana           | 3000 | <http://localhost:3000> |
 | Blackbox Exporter | 9115 | <http://localhost:9115> |
 
-Grafana uses a custom entrypoint script to install the [GitHub Datasource Plugin](https://grafana.com/docs/plugins/grafana-github-datasource/latest) if not already installed.
-
 ### How to start the `telemetry` stack
 
-- The Github Datasource requires a GitHub Personal Access Token (classic) to access the GitHub API. For required scopes, see the ["Permissions" section in the Grafana documentation](https://grafana.com/docs/plugins/grafana-github-datasource/latest/setup/token/#permissions).
-    - Setup a GitHub Personal Access Token (classic).
-    - A `components/telemetry/docker-compose.override.yml` file in this repo is expected to provide the GitHub Personal Access Token (PAT) for provisioning the GitHub datasource in Grafana. If this token is missing, data cannot be queried from GitHub and related dashboards and alerts will not work. But Grafana will still start.
-
-      ```yaml
-      ---
-      services:
-        grafana:
-          environment:
-            - GITHUB_PAT=the_pat
-      ```
-
-    - The environment variable will be passed into Grafana for provisioning and used by the GitHub Datasource.
-- Run [the stack](components/telemetry/docker-compose.yml) using `docker compose up` in the `components/telemetry` folder.
+Run [the stack](components/telemetry/docker-compose.yml) using `docker compose up` in the `components/telemetry` folder.
 
 ## Stack: `metrics`
 
@@ -48,7 +33,7 @@ The `metrics` Docker stack (see [`components/metrics`](components/metrics) folde
 
 ### How to start the `metrics` stack
 
-- Run [the stack](components/metrics/docker-compose.yml) using `docker compose up` in the `components/metrics` folder.
+Run [the stack](components/metrics/docker-compose.yml) using `docker compose up` in the `components/metrics` folder.
 
 ## Risks and Technical Debts
 
