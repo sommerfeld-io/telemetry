@@ -1,7 +1,7 @@
-# We expect a docker-compose.override.yaml file in this repo that provides the
+# We expect a `docker-compose.override.yml` file in this repo that provides the
 # GitHub Personal Access Token (PAT) for provisioning the GitHub datasource in
 # Grafana. If this token is missing, data cannot be queried from GitHub and
-# related dashboards and alerts will not work.
+# related dashboards and alerts will not work. But Grafana will still start.
 #
 # Example docker-compose.override.yaml:
 #
