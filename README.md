@@ -1,10 +1,10 @@
 # Telemetry
 
-A simple telemetry setup using Docker Compose. This repo provides stacks to run Prometheus. Loki and Grafana and to expose metrics.
+A simple telemetry setup using Docker Compose. This repo provides stacks to run Prometheus, Loki and Grafana and to expose metrics.
 
 <!-- ![Project Logo](https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/main/.assets/logo.png) -->
 
-## Warning: This Setup is intended for our infrastructure
+## Warning: This setup is intended for our infrastructure
 
 Feel free to use this repository as a starting point for your own configuration. However, this config references hosts and servers by name. So simply starting the services will not work for you. You need to adjust at least the host names of the machines you want to observe.
 
@@ -12,11 +12,11 @@ Feel free to use this repository as a starting point for your own configuration.
 
 The Docker Compose stack is designed to run on a dedicated Raspberry Pi, serving as the central monitoring server for the homelab environment. The stack continuously collects, stores, and visualizes metrics from various devices and services across the network. This setup provides a solution for tracking system health, performance, and service availability in the self-hosted infrastructure.
 
-| Component         | Port | URL                     | Info          |
-| ----------------- | ---- | ----------------------- | ------------- |
-| Prometheus        | 9090 | <http://localhost:9100> | -             |
-| Grafana           | 3000 | <http://localhost:9110> | -             |
-| Blackbox Exporter | 9115 | <http://localhost:9990> | -             |
+| Component         | Port | URL                     |
+| ----------------- | ---- | ----------------------- |
+| Prometheus        | 9090 | <http://localhost:9090> |
+| Grafana           | 3000 | <http://localhost:3000> |
+| Blackbox Exporter | 9115 | <http://localhost:9115> |
 
 Grafana uses a custom entrypoint script to install the [GitHub Datasource Plugin](https://grafana.com/docs/plugins/grafana-github-datasource/latest) if not already installed.
 
