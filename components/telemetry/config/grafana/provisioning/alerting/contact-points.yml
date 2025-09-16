@@ -1,0 +1,11 @@
+---
+apiVersion: 1
+contactPoints:
+  - orgId: 1
+    name: google-chat
+    receivers:
+      - uid: google-chat
+        type: googlechat
+        settings:
+          url: https://chat.googleapis.com/v1/spaces/AAQAZGvuZA8/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=Oag2jHb4tifKtI3hWK1L-vzpNs2VAI7ydBNi0dXH7C8
+        disableResolveMessage: false

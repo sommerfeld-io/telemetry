@@ -31,11 +31,11 @@ tasks:
   cleanup:
     desc: 'Cleanup the environment'
     cmds:
-      - docker compose down --remove-orphans
       - rm -rf .cache
       - rm -rf node_modules
       - rm -rf target
       - find . -type f -exec chmod +r {} +
+      - find . -type d -exec chmod 755 {} +
 
   # ===============================================================================================
 

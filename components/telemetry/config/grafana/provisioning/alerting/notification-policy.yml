@@ -1,0 +1,16 @@
+---
+apiVersion: 1
+policies:
+  - orgId: 1
+    receiver: google-chat
+    group_by:
+      - grafana_folder
+      - alertname
+    object_matchers:
+      - - notification/channel
+        - =
+        - google-chat
+      - - notification/enabled
+        - =
+        - "true"
+    repeat_interval: 8h

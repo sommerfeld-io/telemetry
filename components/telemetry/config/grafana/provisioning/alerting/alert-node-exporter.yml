@@ -63,13 +63,13 @@ groups:
               maxDataPoints: 43200
               refId: C
               type: threshold
-        dashboardUid: rYdddlPWk
+        dashboardUid: node-exporter-full
         panelId: 154
-        noDataState: NoData
+        noDataState: OK
         execErrState: Error
         for: 5m
         annotations:
-          __dashboardUid__: rYdddlPWk
+          __dashboardUid__: node-exporter-full
           __panelId__: "154"
           description: Too little space left on device. Root FS usage is above 75%.
           summary: Root FS usage is above threshold
@@ -79,7 +79,7 @@ groups:
           severity: medium
         isPaused: false
         notification_settings:
-          receiver: grafana-default-email
+          receiver: google-chat
       # -----------------------------------------------------------------------
       - uid: ram-used
         title: RAM Used (%)
@@ -132,13 +132,13 @@ groups:
               maxDataPoints: 43200
               refId: C
               type: threshold
-        dashboardUid: rYdddlPWk
+        dashboardUid: node-exporter-full
         panelId: 16
-        noDataState: NoData
+        noDataState: OK
         execErrState: Error
         for: 5m
         annotations:
-          __dashboardUid__: rYdddlPWk
+          __dashboardUid__: node-exporter-full
           __panelId__: "16"
           description: RAM usage is above 75%.
           summary: RAM usage is above threshold
@@ -148,7 +148,7 @@ groups:
           severity: medium
         isPaused: false
         notification_settings:
-          receiver: grafana-default-email
+          receiver: google-chat
       # -----------------------------------------------------------------------
       - uid: cpu-busy
         title: CPU Busy (%)
@@ -201,13 +201,13 @@ groups:
               maxDataPoints: 43200
               refId: C
               type: threshold
-        dashboardUid: rYdddlPWk
+        dashboardUid: node-exporter-full
         panelId: 20
-        noDataState: NoData
+        noDataState: OK
         execErrState: Error
         for: 5m
         annotations:
-          __dashboardUid__: rYdddlPWk
+          __dashboardUid__: node-exporter-full
           __panelId__: "20"
           description: CPU usage is above 90%.
           summary: CPU usage is above threshold
@@ -217,4 +217,4 @@ groups:
           severity: medium
         isPaused: false
         notification_settings:
-          receiver: grafana-default-email
+          receiver: google-chat
