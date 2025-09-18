@@ -555,23 +555,23 @@
             },
             "includeByName": {},
             "indexByName": {
-              "Value #CPUCOUNT": 11,
-              "Value #CPUUSAGE": 12,
-              "Value #FSTOTAL": 15,
-              "Value #FSUSAGE": 16,
+              "Value #CPUCOUNT": 8,
+              "Value #CPUUSAGE": 9,
+              "Value #FSTOTAL": 12,
+              "Value #FSUSAGE": 13,
               "Value #INFO": 1,
-              "Value #LOAD1": 8,
-              "Value #LOAD15": 10,
-              "Value #LOAD5": 9,
-              "Value #MEMTOTAL": 13,
-              "Value #MEMUSAGE": 14,
-              "Value #OS": 6,
-              "Value #UPTIME": 7,
+              "Value #LOAD1": 5,
+              "Value #LOAD15": 7,
+              "Value #LOAD5": 6,
+              "Value #MEMTOTAL": 10,
+              "Value #MEMUSAGE": 11,
+              "Value #OS": 3,
+              "Value #UPTIME": 4,
               "instance": 0,
               "nodename": 2,
-              "pretty_name": 3,
-              "release": 5,
-              "version_codename": 4
+              "pretty_name": 14,
+              "release": 16,
+              "version_codename": 15
             },
             "renameByName": {
               "Value #CPUCOUNT": "Cores",
@@ -1232,12 +1232,157 @@
       "type": "timeseries"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 27
+      },
+      "id": 13,
+      "panels": [],
+      "title": "Docker",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_Metrics}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 28
+      },
+      "id": 12,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Docker Monitoring",
+          "url": "/d/kqZ9U4ggz/docker-monitoring-with-node-selection"
+        }
+      ],
+      "maxDataPoints": 100,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "max",
+            "min",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_Metrics}"
+          },
+          "editorMode": "code",
+          "expr": "count(container_last_seen{job=~\"$job\",image!=\"\"}) by (instance)",
+          "intervalFactor": 2,
+          "legendFormat": "",
+          "metric": "container_last_seen",
+          "range": true,
+          "refId": "A",
+          "step": 240
+        }
+      ],
+      "title": "Running containers",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "valueLabel": "instance"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 37
       },
       "id": 9,
       "panels": [
@@ -1314,7 +1459,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 77
+            "y": 137
           },
           "id": 7,
           "options": {
@@ -1372,7 +1517,7 @@
           "value": "prometheus"
         },
         "includeAll": false,
-        "label": "Metrics",
+        "label": "Datasource",
         "name": "DS_Metrics",
         "options": [],
         "query": "prometheus",
@@ -1446,5 +1591,5 @@
   "timezone": "utc",
   "title": "Node / Fleet Overview",
   "uid": "node_fleet_overview",
-  "version": 5
+  "version": 2
 }

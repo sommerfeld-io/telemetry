@@ -8,18 +8,28 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: 'system-metrics'
+  - job_name: 'workstation-metrics'
     scrape_interval: 15s
     static_configs:
       - targets:
           - caprica.fritz.box:9100
           - kobol.fritz.box:9100
-          - admin-pi.fritz.box:9100
         labels:
           group: "node-metrics"
       - targets:
           - caprica.fritz.box:9110
           - kobol.fritz.box:9110
+        labels:
+          group: "docker-metrics"
+
+  - job_name: 'raspi-metrics'
+    scrape_interval: 15s
+    static_configs:
+      - targets:
+          - admin-pi.fritz.box:9100
+        labels:
+          group: "node-metrics"
+      - targets:
           - admin-pi.fritz.box:9110
         labels:
           group: "docker-metrics"

@@ -34,7 +34,7 @@ tasks:
       - rm -rf .cache
       - rm -rf node_modules
       - rm -rf target
-      - find . -type f -exec chmod +r {} +
+      - find . -type f -exec chmod ugo+r {} +
       - find . -type d -exec chmod 755 {} +
 
   # ===============================================================================================
