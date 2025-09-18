@@ -20,3 +20,9 @@ providers:
     type: file
     options:
       path: /etc/grafana/provisioning/dashboards/nodes
+  - name: 'services'
+    orgId: 1
+    folder: 'Services'
+    type: file
+    options:
+      path: /etc/grafana/provisioning/dashboards/services
