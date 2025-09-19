@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 14,
   "links": [
     {
       "asDropdown": true,
@@ -1245,10 +1245,10 @@
         "allowCustomValue": false,
         "current": {
           "text": [
-            "websites"
+            "All"
           ],
           "value": [
-            "websites"
+            "$__all"
           ]
         },
         "datasource": {
@@ -1276,9 +1276,7 @@
         "allowCustomValue": false,
         "current": {
           "text": "All",
-          "value": [
-            "$__all"
-          ]
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
@@ -1303,12 +1301,12 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Service Overview",
   "uid": "services-overview",
-  "version": 3
+  "version": 6
 }
