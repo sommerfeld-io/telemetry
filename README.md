@@ -22,6 +22,14 @@ The `telemetry` Docker stack (see [`components/telemetry`](components/metrics) f
 
 Run [the stack](components/telemetry/docker-compose.yml) using `docker compose up` in the `components/telemetry` folder.
 
+### How to run locally for development
+
+When running the telemetry stack locally for development, Prometheus operates as it does in production: it actively scrapes metrics from all configured targets. This means the local Prometheus instance collects real data from the same endpoints, allowing developers to observe and test the full metrics pipeline in a realistic environment. As a result, the development setup receives and processes actual metrics, ensuring feature parity and reliable testing.
+
+As long as the metrics stack is running, there is no need to start an additional metrics stack for local development. The local Prometheus instance will automatically scrape and collect the metrics data.
+
+So simply start the docker compose stack as mentioned above.
+
 ## Stack: `metrics`
 
 The `metrics` Docker stack (see [`components/metrics`](components/metrics) folder) is a Docker Compose configuration that manages all of the needed exporters to monitor system metrics with Prometheus and Grafana. By using the`metrics` Docker stack, you can quickly and easily deploy all of the necessary components for monitoring your system metrics. This includes exporters for various system metrics, such as CPU usage, disk usage, and network activity.
