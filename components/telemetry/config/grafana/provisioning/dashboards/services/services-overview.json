@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 14,
+  "id": 4,
   "links": [
     {
       "asDropdown": true,
@@ -102,7 +102,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 7,
         "w": 24,
         "x": 0,
         "y": 0
@@ -144,131 +144,6 @@
         }
       ],
       "title": "Availability",
-      "transformations": [
-        {
-          "id": "labelsToFields",
-          "options": {
-            "keepLabels": [
-              "instance"
-            ],
-            "valueLabel": "instance"
-          }
-        }
-      ],
-      "type": "status-history"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "axisPlacement": "auto",
-            "fillOpacity": 70,
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1
-          },
-          "fieldMinMax": false,
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "text": "DOWN"
-                },
-                "1": {
-                  "text": "UP"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": 0
-              },
-              {
-                "color": "green",
-                "value": 200
-              },
-              {
-                "color": "#EAB839",
-                "value": 201
-              },
-              {
-                "color": "red",
-                "value": 399
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 5
-      },
-      "id": 2,
-      "maxDataPoints": 100,
-      "options": {
-        "colWidth": 0.9,
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "rowHeight": 0.9,
-        "showValue": "auto",
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.1.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "probe_http_status_code{\n    instance=~\"$instance\",\n    job=~\"$job\"\n}",
-          "format": "time_series",
-          "instant": false,
-          "interval": "1m",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "HTTP Status Code",
       "transformations": [
         {
           "id": "labelsToFields",
@@ -358,10 +233,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
-        "w": 6,
+        "h": 7,
+        "w": 24,
         "x": 0,
-        "y": 10
+        "y": 7
       },
       "id": 3,
       "options": {
@@ -370,7 +245,7 @@
             "lastNotNull"
           ],
           "displayMode": "table",
-          "placement": "bottom",
+          "placement": "right",
           "showLegend": true
         },
         "tooltip": {
@@ -476,9 +351,9 @@
       },
       "gridPos": {
         "h": 10,
-        "w": 6,
-        "x": 6,
-        "y": 10
+        "w": 12,
+        "x": 0,
+        "y": 14
       },
       "id": 4,
       "options": {
@@ -489,7 +364,7 @@
             "min"
           ],
           "displayMode": "table",
-          "placement": "bottom",
+          "placement": "right",
           "showLegend": true
         },
         "tooltip": {
@@ -829,7 +704,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 10
+        "y": 14
       },
       "id": 9,
       "options": {
@@ -1015,7 +890,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 24
       },
       "id": 6,
       "panels": [
@@ -1217,5 +1092,5 @@
   "timezone": "browser",
   "title": "Service Overview",
   "uid": "services-overview",
-  "version": 2
+  "version": 3
 }
