@@ -1,41 +1,63 @@
+// See https://grafana.com/docs/alloy/latest/reference/components/discovery/discovery.docker
+
 // This component is responsible for disovering new containers within the docker environment
-discovery.docker "getting_started" {
+discovery.docker "running_containers" {
 	host = "unix:///var/run/docker.sock"
 	refresh_interval = "5s"
 }
 
 // This component is responsible for relabeling the discovered containers
-discovery.relabel "getting_started" {
+discovery.relabel "running_containers" {
 	targets = []
 
 	rule {
+		source_labels = ["__meta_docker_container_id"]
+		regex         = "/(.*)"
+		target_label  = "container_id"
+	}
+	rule {
 		source_labels = ["__meta_docker_container_name"]
 		regex         = "/(.*)"
-		target_label  = "container"
+		target_label  = "container_name"
+	}
+	rule {
+		source_labels = ["__meta_docker_container_network_mode"]
+		regex         = "/(.*)"
+		target_label  = "container_network_mode"
+	}
+	rule {
+		source_labels = ["__meta_docker_network_id"]
+		regex         = "/(.*)"
+		target_label  = "network_id"
+	}
+	rule {
+		source_labels = ["__meta_docker_network_name"]
+		regex         = "/(.*)"
+		target_label  = "network_name"
 	}
 }
 
 // This component is responsible for collecting logs from the discovered containers
-loki.source.docker "getting_started" {
+loki.source.docker "running_containers" {
 	host             = "unix:///var/run/docker.sock"
-	targets          = discovery.docker.getting_started.targets
-	forward_to       = [loki.process.getting_started.receiver]
-	relabel_rules    = discovery.relabel.getting_started.rules
+	targets          = discovery.docker.running_containers.targets
+	forward_to       = [loki.process.running_containers.receiver]
+	relabel_rules    = discovery.relabel.running_containers.rules
 	refresh_interval = "5s"
 }
 
 // This component is responsible for processing the logs (In this case adding static labels)
-loki.process "getting_started" {
+loki.process "running_containers" {
     stage.static_labels {
-    values = {
-      env = "dev",
+        values = {
+            env = "dev",
+        }
     }
-}
-    forward_to = [loki.write.getting_started.receiver]
+    forward_to = [loki.write.running_containers.receiver]
 }
 
 // This component is responsible for writing the logs to Loki
-loki.write "getting_started" {
+loki.write "running_containers" {
 	endpoint {
 		url  = "http://host.docker.internal:3100/loki/api/v1/push"
 	}
@@ -43,5 +65,5 @@ loki.write "getting_started" {
 
 // Enables the ability to view logs in the Alloy UI in realtime
 livedebugging {
-  enabled = true
+    enabled = true
 }

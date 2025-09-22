@@ -63,7 +63,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 13,
+  "id": 5,
   "links": [
     {
       "asDropdown": true,
@@ -1316,7 +1316,7 @@
               },
               {
                 "color": "green",
-                "value": 2
+                "value": 3
               }
             ]
           },
@@ -1600,5 +1600,5 @@
   "timezone": "utc",
   "title": "Node / Fleet Overview",
   "uid": "node_fleet_overview",
-  "version": 6
+  "version": 7
 }
