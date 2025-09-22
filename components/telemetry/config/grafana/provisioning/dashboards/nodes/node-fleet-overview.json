@@ -63,7 +63,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 2,
+  "id": 13,
   "links": [
     {
       "asDropdown": true,
@@ -111,7 +111,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_Metrics}"
       },
       "fieldConfig": {
         "defaults": {
@@ -355,7 +355,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "node_os_info{job=~\"$job\",instance=~\"$instance\"}",
           "format": "table",
@@ -366,7 +366,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "node_uname_info{job=~\"$job\",instance=~\"$instance\"}",
           "format": "table",
@@ -377,7 +377,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "time() - node_boot_time_seconds{job=~\"$job\",instance=~\"$instance\"}",
           "format": "table",
@@ -388,7 +388,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "avg by (instance) (node_load1{job=~\"$job\",instance=~\"$instance\"})",
           "format": "table",
@@ -399,7 +399,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "avg by (instance) (node_load5{job=~\"$job\",instance=~\"$instance\"})",
           "format": "table",
@@ -410,7 +410,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "avg by (instance) (node_load15{job=~\"$job\",instance=~\"$instance\"})",
           "format": "table",
@@ -421,7 +421,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "count by (instance) (node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance\", mode=\"idle\"})",
           "format": "table",
@@ -432,7 +432,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "(((count by (instance) (count(node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance\"}) by (cpu, instance))) \n- \navg by (instance) (sum by (instance, mode)(irate(node_cpu_seconds_total{mode='idle',job=~\"$job\",instance=~\"$instance\"}[$__rate_interval])))) * 100) \n/ \ncount by(instance) (count(node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance\"}) by (cpu, instance))\n",
           "format": "table",
@@ -443,7 +443,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$instance\"}",
           "format": "table",
@@ -454,7 +454,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "100 -\n(\n  avg by (instance) (node_memory_MemAvailable_bytes{job=~\"$job\",instance=~\"$instance\"}) /\n  avg by (instance) (node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$instance\"})\n* 100\n)\n",
           "format": "table",
@@ -465,7 +465,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "node_filesystem_size_bytes{job=~\"$job\",instance=~\"$instance\", mountpoint=\"/\",fstype!=\"rootfs\"}",
           "format": "table",
@@ -476,7 +476,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "100-(max by (instance) (node_filesystem_avail_bytes{job=~\"$job\",instance=~\"$instance\", fstype!=\"\", mountpoint=\"/\"})\n/\nmax by (instance) (node_filesystem_size_bytes{job=~\"$job\",instance=~\"$instance\", fstype!=\"\", mountpoint=\"/\"}) * 100)\n",
           "format": "table",
@@ -487,7 +487,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "count by (instance) (max_over_time(ALERTS{job=~\"$job\",instance=~\"$instance\", alertstate=\"firing\", severity=\"critical\"}[1m])) * group by (instance) (node_uname_info{job=~\"$job\",instance=~\"$instance\"})",
           "format": "table",
@@ -498,7 +498,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "count by (instance) (max_over_time(ALERTS{job=~\"$job\",instance=~\"$instance\", alertstate=\"firing\", severity=\"warning\"}[1m])) * group by (instance) (node_uname_info{job=~\"$job\",instance=~\"$instance\"})",
           "format": "table",
@@ -613,7 +613,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_Metrics}"
       },
       "description": "Top 25",
       "fieldConfig": {
@@ -747,7 +747,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "topk(25, (((count by (instance) (count(node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance\"}) by (cpu, instance))) \n- \navg by (instance) (sum by (instance, mode)(irate(node_cpu_seconds_total{mode='idle',job=~\"$job\",instance=~\"$instance\"}[$__rate_interval])))) * 100) \n/ \ncount by(instance) (count(node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance\"}) by (cpu, instance))\n)",
           "format": "timeseries",
@@ -758,7 +758,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "avg((((count by (instance) (count(node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance\"}) by (cpu, instance))) \n- \navg by (instance) (sum by (instance, mode)(irate(node_cpu_seconds_total{mode='idle',job=~\"$job\",instance=~\"$instance\"}[$__rate_interval])))) * 100) \n/ \ncount by(instance) (count(node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance\"}) by (cpu, instance))\n)",
           "format": "timeseries",
@@ -773,7 +773,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_Metrics}"
       },
       "description": "Top 25",
       "fieldConfig": {
@@ -908,7 +908,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "topk(25, 100 -\n(\n  avg by (instance) (node_memory_MemAvailable_bytes{job=~\"$job\",instance=~\"$instance\"}) /\n  avg by (instance) (node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$instance\"})\n* 100\n)\n)",
           "format": "timeseries",
@@ -919,7 +919,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "editorMode": "code",
           "expr": "avg(100 -\n(\n  avg by (instance) (node_memory_MemAvailable_bytes{job=~\"$job\",instance=~\"$instance\"}) /\n  avg by (instance) (node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$instance\"})\n* 100\n)\n)",
@@ -936,7 +936,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_Metrics}"
       },
       "description": "Top 25",
       "fieldConfig": {
@@ -1070,7 +1070,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "topk(25, rate(node_disk_io_time_seconds_total{job=~\"$job\",instance=~\"$instance\", device!=\"\"}[$__rate_interval]))",
           "format": "timeseries",
@@ -1085,7 +1085,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_Metrics}"
       },
       "description": "Top 25",
       "fieldConfig": {
@@ -1219,7 +1219,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "expr": "topk(25, sort_desc(1 -\n  (\n  max by (job, instance, fstype, device, mountpoint) (node_filesystem_avail_bytes{job=~\"$job\",instance=~\"$instance\", fstype!=\"\", mountpoint!=\"\"})\n  /\n  max by (job, instance, fstype, device, mountpoint) (node_filesystem_size_bytes{job=~\"$job\",instance=~\"$instance\", fstype!=\"\", mountpoint!=\"\"})\n  ) != 0\n)\n)",
           "format": "timeseries",
@@ -1247,8 +1247,9 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${datasource}"
+        "uid": "${DS_Metrics}"
       },
+      "description": "No machins should run less than 2 containers because everyone should at least run Node-Exporter and cAdvisor.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1288,7 +1289,7 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "dashed"
             }
           },
           "mappings": [
@@ -1308,6 +1309,14 @@
               {
                 "color": "blue",
                 "value": 0
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 2
               }
             ]
           },
@@ -1353,7 +1362,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "editorMode": "code",
           "expr": "count(container_last_seen{job=~\"$job\",image!=\"\"}) by (instance)",
@@ -1389,7 +1398,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_Metrics}"
           },
           "description": "Top 25",
           "fieldConfig": {
@@ -1484,7 +1493,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "${datasource}"
+                "uid": "${DS_Metrics}"
               },
               "expr": "topk(25, irate(node_network_receive_errs_total{job=~\"$job\",instance=~\"$instance\"}[$__rate_interval]) + irate(node_network_transmit_errs_total{job=~\"$job\",instance=~\"$instance\"}[$__rate_interval]) + irate(node_network_receive_drop_total{job=~\"$job\",instance=~\"$instance\"}[$__rate_interval]) + irate(node_network_transmit_drop_total{job=~\"$job\",instance=~\"$instance\"}[$__rate_interval])) > 0.5",
               "format": "timeseries",
@@ -1518,7 +1527,7 @@
         },
         "includeAll": false,
         "label": "Datasource",
-        "name": "datasource",
+        "name": "DS_Metrics",
         "options": [],
         "query": "prometheus",
         "refresh": 1,
@@ -1526,7 +1535,6 @@
         "type": "datasource"
       },
       {
-        "allowCustomValue": false,
         "current": {
           "text": "All",
           "value": [
@@ -1535,7 +1543,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "prometheus"
         },
         "definition": "label_values(node_uname_info,job)",
         "includeAll": true,
@@ -1564,7 +1572,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "prometheus"
         },
         "definition": "label_values(node_uname_info{job=~\"$job\"},instance)",
         "includeAll": true,
@@ -1592,5 +1600,5 @@
   "timezone": "utc",
   "title": "Node / Fleet Overview",
   "uid": "node_fleet_overview",
-  "version": 2
+  "version": 6
 }
