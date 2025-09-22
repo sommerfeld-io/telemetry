@@ -22,6 +22,7 @@
         "components/telemetry/config/grafana/provisioning/dashboards",
         "components/telemetry/config/grafana/provisioning/dashboards/*",
         "components/telemetry/config/grafana/provisioning/datasources",
+        "components/telemetry/config/loki",
         "components/telemetry/config/prometheus",
 
 		"node_modules/**",
