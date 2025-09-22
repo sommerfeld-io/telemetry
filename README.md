@@ -43,6 +43,22 @@ The `metrics` Docker stack (see [`components/metrics`](components/metrics) folde
 
 Run [the stack](components/metrics/docker-compose.yml) using `docker compose up` in the `components/metrics` folder.
 
+## Stack: `test-logs`
+
+The `test-logs` Docker stack (see [`components/test-logs`](components/test-logs) folder) is designed for local development purposes to collect and forward logs from all running Docker containers to Loki. Unlike Prometheus, which scrapes metrics from endpoints, Loki does not actively scrape log data. Instead, this stack uses Grafana Alloy to collect container logs and push them to the Loki instance running in the telemetry stack.
+
+| Component              | Port  | URL                      |
+| ---------------------- | ----- | ------------------------ |
+| Alloy (Container Logs) | 2345 | <http://localhost:2345> |
+
+> :zap: Note: The `test-logs` stack uses a non-standard port (`2345` instead of `12345`) to avoid conflicts with alloy instances that might be running on the host machine.
+
+The Alloy agent monitors the Docker socket (`/var/run/docker.sock`) to capture logs from all local containers and forwards them to Loki for centralized log aggregation and analysis. This setup enables developers to test log collection and visualization workflows locally without impacting production systems.
+
+### How to start the `test-logs` stack
+
+Run [the stack](components/test-logs/docker-compose.yml) using `docker compose up` in the `components/test-logs` folder. You can run the stack from inside a DevContainer as well.
+
 ## Risks and Technical Debts
 
 All issues labeled as `risk` (= some sort of risk or a technical debt) or `security` (= disclosed security issues - e.g. CVEs) [are tracked as GitHub issue](https://github.com/sommerfeld-io/telemetry/issues?q=is%3Aissue+label%3Asecurity%2Crisk+is%3Aopen) and carry the respective label.
