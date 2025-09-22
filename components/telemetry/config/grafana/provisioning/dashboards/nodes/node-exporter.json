@@ -24,8 +24,23 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 2,
+  "id": 12,
   "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "linux",
+        "node-exporter"
+      ],
+      "targetBlank": false,
+      "title": "Linux Dashboards",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
     {
       "icon": "external link",
       "tags": [],
@@ -15989,7 +16004,8 @@
   "refresh": "1m",
   "schemaVersion": 41,
   "tags": [
-    "linux"
+    "linux",
+    "node-exporter"
   ],
   "templating": {
     "list": [
@@ -16092,5 +16108,5 @@
   "timezone": "browser",
   "title": "Node Exporter Full",
   "uid": "node-exporter-full",
-  "version": 2
+  "version": 3
 }

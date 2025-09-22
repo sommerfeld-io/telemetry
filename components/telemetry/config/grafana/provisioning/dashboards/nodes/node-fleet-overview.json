@@ -63,7 +63,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 5,
+  "id": 13,
   "links": [
     {
       "asDropdown": true,
@@ -85,7 +85,8 @@
       "includeVars": false,
       "keepTime": false,
       "tags": [
-        "linux"
+        "linux",
+        "node-exporter"
       ],
       "targetBlank": false,
       "title": "Linux Dashboards",
@@ -1249,7 +1250,6 @@
         "type": "prometheus",
         "uid": "${DS_Metrics}"
       },
-      "description": "No machins should run less than 2 containers because everyone should at least run Node-Exporter and cAdvisor.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1289,7 +1289,7 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "dashed"
+              "mode": "off"
             }
           },
           "mappings": [
@@ -1309,14 +1309,6 @@
               {
                 "color": "blue",
                 "value": 0
-              },
-              {
-                "color": "red",
-                "value": 0
-              },
-              {
-                "color": "green",
-                "value": 3
               }
             ]
           },
@@ -1515,7 +1507,8 @@
   "schemaVersion": 41,
   "tags": [
     "node-exporter",
-    "overview"
+    "overview",
+    "linux"
   ],
   "templating": {
     "list": [
@@ -1600,5 +1593,5 @@
   "timezone": "utc",
   "title": "Node / Fleet Overview",
   "uid": "node_fleet_overview",
-  "version": 7
+  "version": 8
 }
