@@ -15,6 +15,18 @@ discovery.relabel "running_containers" {
 		regex         = "/(.*)"
 		target_label  = "container_name"
 	}
+	rule {
+		source_labels = ["__meta_docker_container_id"]
+		target_label  = "container_id"
+	}
+	rule {
+		source_labels = ["__meta_docker_container_label_com_docker_compose_service"]
+		target_label  = "compose_service"
+	}
+	rule {
+		source_labels = ["__meta_docker_container_label_com_docker_compose_project"]
+		target_label  = "compose_project"
+	}
 }
 
 // This component is responsible for collecting logs from the discovered containers
@@ -31,6 +43,7 @@ loki.process "running_containers" {
     stage.static_labels {
         values = {
             env = "dev",
+            source = "docker",
         }
     }
     forward_to = [loki.write.running_containers.receiver]
