@@ -40,6 +40,8 @@ The `metrics` Docker stack (see [`components/metrics`](components/metrics) folde
 | Node Exporter | 9100  | <http://localhost:9100>  |
 | cAdvisor      | 9110  | <http://localhost:9110>  |
 
+Alloy is configured to collect logs from all running Docker containers and forward them to the Loki instance running in the telemetry stack.
+
 ### How to start the `metrics` stack
 
 Run [the stack](components/metrics/docker-compose.yml) using `docker compose up` in the `components/metrics` folder.
