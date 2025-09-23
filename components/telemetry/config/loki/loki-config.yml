@@ -31,6 +31,8 @@ limits_config:
   allow_structured_metadata: true
   volume_enabled: true
   retention_period: 360d
+  split_queries_by_interval: '24h'
+  max_query_parallelism: 32
 
 schema_config:
   configs:
