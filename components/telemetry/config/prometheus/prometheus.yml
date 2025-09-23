@@ -1,8 +1,10 @@
 ---
 global:
   scrape_interval: 15s
+  scrape_timeout: 15s
   external_labels:
     monitor: 'prometheus-grafana-stack'
+
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
@@ -10,6 +12,7 @@ scrape_configs:
 
   - job_name: 'workstation-metrics'
     scrape_interval: 15s
+    scrape_timeout: 15s
     static_configs:
       - targets:
           - caprica.fritz.box:9100
@@ -24,6 +27,7 @@ scrape_configs:
 
   - job_name: 'raspi-metrics'
     scrape_interval: 15s
+    scrape_timeout: 15s
     static_configs:
       - targets:
           - admin-pi.fritz.box:9100
@@ -39,6 +43,7 @@ scrape_configs:
     params:
       module: [http_2xx]
     scrape_interval: 60s
+    scrape_timeout: 15s
     static_configs:
       - targets:
           - www.fb-brunnenbau.de
@@ -57,6 +62,7 @@ scrape_configs:
     params:
       module: [http_2xx]
     scrape_interval: 60s
+    scrape_timeout: 15s
     static_configs:
       - targets:
           - sommerfeld-io.github.io/configs-homelab
