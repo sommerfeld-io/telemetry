@@ -20,12 +20,20 @@ discovery.relabel "running_containers" {
 		target_label  = "container_id"
 	}
 	rule {
-		source_labels = ["__meta_docker_container_label_com_docker_compose_service"]
-		target_label  = "compose_service"
-	}
-	rule {
 		source_labels = ["__meta_docker_container_label_com_docker_compose_project"]
 		target_label  = "compose_project"
+	}
+	rule {
+		source_labels = ["__meta_docker_container_label_com_docker_compose_project_config_files"]
+		target_label  = "compose_files"
+	}
+	rule {
+		source_labels = ["__meta_docker_container_label_com_docker_compose_project_working_dir"]
+		target_label  = "working_dir"
+	}
+	rule {
+		source_labels = ["__meta_docker_container_label_maintainer"]
+		target_label  = "maintainer"
 	}
 }
 
@@ -44,6 +52,7 @@ loki.process "running_containers" {
         values = {
             env = "dev",
             source = "docker",
+            hostname = env("HOSTNAME"),
         }
     }
     forward_to = [loki.write.running_containers.receiver]

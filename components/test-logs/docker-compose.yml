@@ -4,6 +4,9 @@ services:
   alloy-container-logs:
     image: grafana/alloy:v1.10.2
     container_name: alloy-container-logs
+    environment:
+      # additional data which should be available in config.alloy
+      - HOSTNAME=${HOSTNAME}
     ports:
       - 2345:12345
       - 4317:4317
