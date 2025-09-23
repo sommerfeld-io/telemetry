@@ -9,7 +9,6 @@
             "settings": {},
             "extensions": [
                 "streetsidesoftware.code-spell-checker",
-                "asciidoctor.asciidoctor-vscode",
                 "ms-azuretools.vscode-containers",
                 "aaron-bond.better-comments",
                 "timonwong.shellcheck",
@@ -17,8 +16,7 @@
                 "github.vscode-github-actions",
                 "redhat.vscode-yaml",
                 "GitHub.copilot",
-                "golang.go",
-                "alexkrechik.cucumberautocomplete",
+                "Grafana.grafana-alloy",
                 "DavidAnson.vscode-markdownlint",
                 "EditorConfig.EditorConfig",
                 "tamasfe.even-better-toml",

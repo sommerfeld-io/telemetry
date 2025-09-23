@@ -26,18 +26,30 @@ Run [the stack](components/telemetry/docker-compose.yml) using `docker compose u
 
 When running the telemetry stack locally for development, Prometheus operates as it does in production: it actively scrapes metrics from all configured targets. This means the local Prometheus instance collects real data from the same endpoints, allowing developers to observe and test the full metrics pipeline in a realistic environment. As a result, the development setup receives and processes actual metrics, ensuring feature parity and reliable testing.
 
-As long as the metrics stack is running, there is no need to start an additional metrics stack for local development. The local Prometheus instance will automatically scrape and collect the metrics data.
+As long as the metrics stack is running, the local Prometheus instance will automatically scrape and collect the metrics data.
 
-So simply start the docker compose stack as mentioned above.
+For log collection during local development, use the dedicated `test-logs` stack (see [`components/test-logs`](components/test-logs) folder). This stack is configured to forward logs from all running Docker containers on the development host (or the dev container) to the local Loki instance. This separate configuration is necessary because Alloy's target destinations are defined in its configuration file - to ship logs to `localhost`, a dedicated config is required.
+
+> :zap: **Note**: The `test-logs` stack uses port `2345` (instead of `12345`) to avoid conflicts with Alloy instances that might be running on the host machine.
+
+To run the complete monitoring stack locally for development, follow these steps:
+
+1. Start the telemetry stack: `docker compose up` in the `components/telemetry` folder
+2. Start the test-logs stack: `docker compose up` in the `components/test-logs` folder
+
+When both stacks are running, you will have a fully functional monitoring setup that collects both metrics and logs from your local environment. When only the telemetry stack is running, only metrics will be collected, and log data will be unavailable.
 
 ## Stack: `metrics`
 
-The `metrics` Docker stack (see [`components/metrics`](components/metrics) folder) is a Docker Compose configuration that manages all of the needed exporters to monitor system metrics with Prometheus and Grafana. By using the`metrics` Docker stack, you can quickly and easily deploy all of the necessary components for monitoring your system metrics. This includes exporters for various system metrics, such as CPU usage, disk usage, and network activity.
+The `metrics` Docker stack (see [`components/metrics`](components/metrics) folder) is a Docker Compose configuration that manages all of the needed exporters to monitor system metrics with Prometheus and Grafana. By using the`metrics` Docker stack, you can quickly and easily deploy all of the necessary components for monitoring your system metrics. This includes exporters for various system metrics, such as CPU usage, disk usage network activity, and logs.
 
-| Component     | Port | URL                     |
-| ------------- | ---- | ----------------------- |
-| Node Exporter | 9100 | <http://localhost:9100> |
-| cAdvisor      | 9110 | <http://localhost:9110> |
+| Component     | Port  | URL                      |
+| ------------- | ----- | ------------------------ |
+| Alloy         | 12345 | <http://localhost:12345> |
+| Node Exporter | 9100  | <http://localhost:9100>  |
+| cAdvisor      | 9110  | <http://localhost:9110>  |
+
+Alloy is configured to collect logs from all running Docker containers and forward them to the Loki instance running in the telemetry stack.
 
 ### How to start the `metrics` stack
 

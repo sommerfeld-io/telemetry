@@ -1,0 +1,71 @@
+// See https://grafana.com/docs/alloy/latest/reference/components/discovery/discovery.docker
+
+// This component is responsible for disovering new containers within the docker environment
+discovery.docker "running_containers" {
+	host = "unix:///var/run/docker.sock"
+	refresh_interval = "5s"
+}
+
+// This component is responsible for relabeling the discovered containers
+discovery.relabel "running_containers" {
+	targets = []
+
+	rule {
+		source_labels = ["__meta_docker_container_name"]
+		regex         = "/(.*)"
+		target_label  = "container_name"
+	}
+	rule {
+		source_labels = ["__meta_docker_container_id"]
+		target_label  = "container_id"
+	}
+	rule {
+		source_labels = ["__meta_docker_container_label_com_docker_compose_project"]
+		target_label  = "compose_project"
+	}
+	rule {
+		source_labels = ["__meta_docker_container_label_com_docker_compose_project_config_files"]
+		target_label  = "compose_files"
+	}
+	rule {
+		source_labels = ["__meta_docker_container_label_com_docker_compose_project_working_dir"]
+		target_label  = "working_dir"
+	}
+	rule {
+		source_labels = ["__meta_docker_container_label_maintainer"]
+		target_label  = "maintainer"
+	}
+}
+
+// This component is responsible for collecting logs from the discovered containers
+loki.source.docker "running_containers" {
+	host             = "unix:///var/run/docker.sock"
+	targets          = discovery.docker.running_containers.targets
+	forward_to       = [loki.process.running_containers.receiver]
+	relabel_rules    = discovery.relabel.running_containers.rules
+	refresh_interval = "5s"
+}
+
+// This component is responsible for processing the logs (In this case adding static labels)
+loki.process "running_containers" {
+    stage.static_labels {
+        values = {
+            env = "dev",
+            source = "docker",
+            hostname = env("HOSTNAME"),
+        }
+    }
+    forward_to = [loki.write.running_containers.receiver]
+}
+
+// This component is responsible for writing the logs to Loki
+loki.write "running_containers" {
+	endpoint {
+		url  = "http://host.docker.internal:3100/loki/api/v1/push"
+	}
+}
+
+// Enables the ability to view logs in the Alloy UI in realtime
+livedebugging {
+    enabled = true
+}
