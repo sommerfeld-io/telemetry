@@ -63,7 +63,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 7,
+  "id": 3,
   "links": [
     {
       "asDropdown": true,
@@ -96,19 +96,6 @@
     }
   ],
   "panels": [
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 8,
-      "panels": [],
-      "title": "Overview",
-      "type": "row"
-    },
     {
       "datasource": {
         "type": "prometheus",
@@ -326,7 +313,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 1
+        "y": 0
       },
       "id": 2,
       "options": {
@@ -604,7 +591,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 7
       },
       "id": 11,
       "panels": [],
@@ -720,10 +707,10 @@
         ]
       },
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 8
       },
       "id": 3,
       "options": {
@@ -881,10 +868,10 @@
         ]
       },
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 12,
         "x": 12,
-        "y": 9
+        "y": 8
       },
       "id": 10,
       "options": {
@@ -1043,10 +1030,10 @@
         ]
       },
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 16
       },
       "id": 5,
       "options": {
@@ -1192,10 +1179,10 @@
         ]
       },
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 16
       },
       "id": 6,
       "options": {
@@ -1238,7 +1225,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 24
       },
       "id": 13,
       "panels": [],
@@ -1317,10 +1304,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 25
       },
       "id": 12,
       "links": [
@@ -1461,10 +1448,10 @@
         ]
       },
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 25
       },
       "id": 14,
       "options": {
@@ -1515,7 +1502,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 33
       },
       "id": 9,
       "panels": [
@@ -1716,7 +1703,6 @@
         "type": "query"
       },
       {
-        "allValue": "",
         "allowCustomValue": false,
         "current": {
           "text": "Loki",
@@ -1741,5 +1727,5 @@
   "timezone": "utc",
   "title": "Node / Fleet Overview",
   "uid": "node_fleet_overview",
-  "version": 10
+  "version": 11
 }
