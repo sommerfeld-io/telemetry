@@ -55,10 +55,6 @@ Alloy is configured to collect logs from all running Docker containers and forwa
 
 Run [the stack](components/metrics/docker-compose.yml) using `docker compose up` in the `components/metrics` folder.
 
-### How to start the `test-logs` stack
-
-Run [the stack](components/test-logs/docker-compose.yml) using `docker compose up` in the `components/test-logs` folder. You can run the stack from inside a DevContainer as well.
-
 ## Risks and Technical Debts
 
 All issues labeled as `risk` (= some sort of risk or a technical debt) or `security` (= disclosed security issues - e.g. CVEs) [are tracked as GitHub issue](https://github.com/sommerfeld-io/telemetry/issues?q=is%3Aissue+label%3Asecurity%2Crisk+is%3Aopen) and carry the respective label.
