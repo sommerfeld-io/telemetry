@@ -18,6 +18,23 @@ services:
       timeout: 10s
       retries: 5
 
+  alloy:
+    image: grafana/alloy:v1.10.2
+    container_name: alloy
+    environment:
+      # additional data which should be available in config.alloy
+      - HOSTNAME=${HOSTNAME}
+    ports:
+      - 12345:12345
+      - 4317:4317
+      - 4318:4318
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./config/alloy/config.alloy:/etc/alloy/config.alloy:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
+
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.52.1
     container_name: cadvisor

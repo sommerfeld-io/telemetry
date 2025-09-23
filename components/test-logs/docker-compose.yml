@@ -1,9 +1,9 @@
 ---
 services:
 
-  alloy-container-logs:
+  alloy:
     image: grafana/alloy:v1.10.2
-    container_name: alloy-container-logs
+    container_name: alloy
     environment:
       # additional data which should be available in config.alloy
       - HOSTNAME=${HOSTNAME}
