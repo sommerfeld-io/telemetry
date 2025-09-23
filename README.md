@@ -24,20 +24,15 @@ Run [the stack](components/telemetry/docker-compose.yml) using `docker compose u
 
 ### How to run locally for development
 
-When running the telemetry stack locally for development, Prometheus operates as it does in production: it actively scrapes metrics from all configured targets. This means the local Prometheus instance collects real data from the same endpoints, allowing developers to observe and test the full metrics pipeline in a realistic environment. As a result, the development setup receives and processes actual metrics, ensuring feature parity and reliable testing.
+**Metrics:** When running the telemetry stack locally for development, Prometheus operates as it does in production: it actively scrapes metrics from all configured targets. This means (as long as targets are exposing metrics) the local Prometheus instance collects real data from the same endpoints, allowing developers to observe and test the full metrics pipeline in a realistic environment. As a result, the development setup receives and processes actual metrics, ensuring feature parity and reliable testing.
 
-As long as the metrics stack is running, the local Prometheus instance will automatically scrape and collect the metrics data.
+**Logs:** For log collection during local development, the telemetry stack includes a Grafana Alloy instance in the `dev` profile which is configured for development use. Based on <https://grafana.com/docs/loki/latest/get-started/quick-start/tutorial> and <https://github.com/grafana/loki-fundamentals?tab=readme-ov-file>, this Alloy instance is set up to forward logs from all running Docker containers on the development host (or the dev-container) to the local Loki instance. The development Alloy configuration uses `localhost` as the target destination, which is separate from the production configuration.
 
-For log collection during local development, use the dedicated `test-logs` stack (see [`components/test-logs`](components/test-logs) folder). This stack is configured to forward logs from all running Docker containers on the development host (or the dev container) to the local Loki instance. This separate configuration is necessary because Alloy's target destinations are defined in its configuration file - to ship logs to `localhost`, a dedicated config is required.
+> :zap: **Note**: The development Alloy instance uses port `2345` (instead of `12345`) to avoid conflicts with Alloy instances that might be running on the host machine.
 
-> :zap: **Note**: The `test-logs` stack uses port `2345` (instead of `12345`) to avoid conflicts with Alloy instances that might be running on the host machine.
+To start the telemetry stack with metrics and logs locally for development, run `docker compose --profile=dev up` in the `components/telemetry` folder
 
-To run the complete monitoring stack locally for development, follow these steps:
-
-1. Start the telemetry stack: `docker compose up` in the `components/telemetry` folder
-2. Start the test-logs stack: `docker compose up` in the `components/test-logs` folder
-
-When both stacks are running, you will have a fully functional monitoring setup that collects both metrics and logs from your local environment. When only the telemetry stack is running, only metrics will be collected, and log data will be unavailable.
+> :zap: **Note**: When running with the `dev` profile, you will have a fully functional monitoring setup that collects both metrics and logs from your local environment. When running without the profile, only metrics will be collected, and log data will be unavailable.
 
 ## Stack: `metrics`
 

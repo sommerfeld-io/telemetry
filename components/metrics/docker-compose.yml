@@ -5,13 +5,13 @@ services:
     image: prom/node-exporter:v1.9.1
     container_name: node_exporter
     restart: always
+    volumes:
+      - /:/host:ro,rslave
+      - /etc/timezone:/etc/timezone:ro
     command:
       - --path.rootfs=/host
     pid: host
     network_mode: host
-    volumes:
-      - /:/host:ro,rslave
-      - /etc/timezone:/etc/timezone:ro
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:9100/metrics"]
       interval: 10s
@@ -21,32 +21,33 @@ services:
   alloy:
     image: grafana/alloy:v1.10.2
     container_name: alloy
+    restart: always
     environment:
       # additional data which should be available in config.alloy
       - HOSTNAME=${HOSTNAME}
-    ports:
-      - 12345:12345
-      - 4317:4317
-      - 4318:4318
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - ./config/alloy/config.alloy:/etc/alloy/config.alloy:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
+    ports:
+      - 12345:12345
+      - 4317:4317
+      - 4318:4318
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.52.1
     container_name: cadvisor
     restart: always
-    ports:
-      - 9110:8080
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
+    ports:
+      - 9110:8080
     privileged: true
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/healthz"]

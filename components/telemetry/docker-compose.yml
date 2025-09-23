@@ -30,14 +30,14 @@ services:
     image: grafana/loki:3.5.5
     container_name: loki
     restart: unless-stopped
-    ports:
-      - "3100:3100"
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - ./config/loki/loki-config.yml:/etc/loki/local-config.yml:ro
       - loki_data:/loki
     command: -config.file=/etc/loki/local-config.yml
+    ports:
+      - "3100:3100"
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:3100/ready"]
       interval: 10s
@@ -48,6 +48,11 @@ services:
     image: grafana/grafana:12.1.1
     container_name: grafana
     restart: unless-stopped
+    depends_on:
+      prometheus:
+        condition: service_healthy
+      loki:
+        condition: service_healthy
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
@@ -57,11 +62,6 @@ services:
       - GF_UNIFIED_ALERTING_STATE_HISTORY_ENABLED=true
       - GF_UNIFIED_ALERTING_STATE_HISTORY_BACKEND=loki
       - GF_UNIFIED_ALERTING_STATE_HISTORY_LOKI_REMOTE_URL=http://loki:3100
-    depends_on:
-      prometheus:
-        condition: service_healthy
-      loki:
-        condition: service_healthy
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -84,16 +84,45 @@ services:
     depends_on:
       prometheus:
         condition: service_healthy
-    ports:
-      - 9115:9115
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - ./config/prometheus/blackbox-exporter.yml:/etc/prometheus/blackbox-exporter.yml:ro
     command:
       - "--config.file=/etc/prometheus/blackbox-exporter.yml"
+    ports:
+      - 9115:9115
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:9115"]
       interval: 10s
       timeout: 10s
       retries: 6
+
+  ## Run compose in profile `dev` to start this service. It is used to ship logs
+  ## to loki and to test Grafana Alloy in development. Alloy is not scraped by
+  ## Prometheus but sends metrics to Prometheus by itself. So without an Alloy
+  ## instance running, no logs will be shipped to Loki when testing on locally.
+  dev-alloy:
+    image: grafana/alloy:v1.10.2
+    container_name: dev-alloy
+    profiles:
+      - dev
+    restart: unless-stopped
+    depends_on:
+      loki:
+        condition: service_healthy
+    environment:
+      # additional data which should be available in config.alloy
+      - HOSTNAME=${HOSTNAME}
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./config/alloy/config.alloy:/etc/alloy/config.alloy:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
+    ports:
+      - 2345:12345
+      - 4317:4317
+      - 4318:4318
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

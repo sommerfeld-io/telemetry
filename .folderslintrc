@@ -15,7 +15,6 @@
         "components/metrics",
         "components/logs",
         "components/telemetry",
-        "components/test-logs",
 
         "components/*/config/alloy",
         "components/*/config/grafana/provisioning/alerting",
