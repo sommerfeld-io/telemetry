@@ -90,3 +90,15 @@ scrape_configs:
           - grafana:3000
         labels:
           group: "grafana-metrics"
+
+  - job_name: 'loki-metrics'
+    metrics_path: /metrics
+    scrape_interval: 15s
+    scrape_timeout: 15s
+    static_configs:
+      - targets:
+           # name of the docker compose service
+           # localhost would refer to the prometheus container itself
+          - loki:3100
+        labels:
+          group: "loki-metrics"
