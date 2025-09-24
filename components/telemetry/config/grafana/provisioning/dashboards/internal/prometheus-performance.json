@@ -24,30 +24,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 17,
-  "links": [
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "keepTime": true,
-      "tags": [
-        "performance_overview"
-      ],
-      "title": "Performance Overview",
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": false,
-      "icon": "external link",
-      "includeVars": false,
-      "keepTime": true,
-      "tags": [
-        "syslog"
-      ],
-      "title": "Syslog Overview",
-      "type": "dashboards"
-    }
-  ],
+  "id": 3,
+  "links": [],
   "panels": [
     {
       "datasource": {
@@ -1662,5 +1640,5 @@
   "timezone": "browser",
   "title": "Prometheus / Performance Overview",
   "uid": "prometheus-performance",
-  "version": 2
+  "version": 3
 }
