@@ -54,14 +54,20 @@ services:
       loki:
         condition: service_healthy
     environment:
+      # Auth
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_FEATURE_TOGGLES_ENABLE=grafanaManagedRecordingRules
+      # Metrics
+      - GF_METRICS_ENABLED=true
+      - GF_METRICS_BASIC_AUTH_USERNAME=admin
+      - GF_METRICS_BASIC_AUTH_PASSWORD=admin
       # Enable alerting state history
       - GF_UNIFIED_ALERTING_STATE_HISTORY_ENABLED=true
       - GF_UNIFIED_ALERTING_STATE_HISTORY_BACKEND=loki
       - GF_UNIFIED_ALERTING_STATE_HISTORY_LOKI_REMOTE_URL=http://loki:3100
+      # Misc
+      - GF_FEATURE_TOGGLES_ENABLE=grafanaManagedRecordingRules
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro

@@ -75,3 +75,18 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: blackbox_exporter:9115
+
+  - job_name: 'grafana-metrics'
+    basic_auth:
+      username: admin
+      password: admin
+    metrics_path: /metrics
+    scrape_interval: 15s
+    scrape_timeout: 15s
+    static_configs:
+      - targets:
+           # name of the docker compose service
+           # localhost would refer to the prometheus container itself
+          - grafana:3000
+        labels:
+          group: "grafana-metrics"
