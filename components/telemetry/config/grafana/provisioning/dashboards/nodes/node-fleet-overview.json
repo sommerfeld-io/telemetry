@@ -63,7 +63,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 3,
+  "id": 11,
   "links": [
     {
       "asDropdown": true,
@@ -1461,7 +1461,8 @@
           "placement": "right",
           "showLegend": true,
           "values": [
-            "value"
+            "value",
+            "percent"
           ]
         },
         "pieType": "donut",
@@ -1487,10 +1488,11 @@
           },
           "direction": "backward",
           "editorMode": "code",
-          "expr": "sum by (detected_level, hostname) (count_over_time({source=\"docker\"}[1m]))",
+          "expr": "sum by (hostname, detected_level) (count_over_time({source=\"docker\"}[5m]))",
+          "legendFormat": "{{hostname}} - {{detected_level}}",
           "queryType": "range",
           "refId": "A",
-          "step": "1m"
+          "step": "5m"
         }
       ],
       "title": "Container Log Levels",
@@ -1727,5 +1729,5 @@
   "timezone": "utc",
   "title": "Node / Fleet Overview",
   "uid": "node_fleet_overview",
-  "version": 11
+  "version": 12
 }
