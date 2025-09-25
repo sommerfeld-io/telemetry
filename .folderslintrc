@@ -24,6 +24,7 @@
         "components/*/config/grafana/provisioning/plugins",
         "components/*/config/loki",
         "components/*/config/prometheus",
+        "components/*/tests/inspec/*/controls",
 
 		"node_modules/**",
 		"public/**",

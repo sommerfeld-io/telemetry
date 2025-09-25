@@ -132,3 +132,27 @@ services:
       - 4318:4318
     extra_hosts:
       - "host.docker.internal:host-gateway"
+
+  test-inspec:
+    image: chef/inspec:5.22.76
+    container_name: test-inspec
+    user: 1000:1000
+    profiles:
+      - test
+    depends_on:
+      prometheus:
+        condition: service_healthy
+      blackbox_exporter:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
+      loki:
+        condition: service_healthy
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./tests:/tests
+    working_dir: /tests
+    command: exec inspec/baseline --no-distinct-exit --chef-license=accept
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
