@@ -10,10 +10,6 @@ control 'http-01' do
     { protocol: 'http', host: 'host.docker.internal', port: '3100', path: 'ready' }, # loki
     { protocol: 'http', host: 'host.docker.internal', port: '9090', path: '-/healthy' }, # prometheus
     { protocol: 'http', host: 'host.docker.internal', port: '9115', path: 'metrics' }, # blackbox-exporter
-    # { protocol: 'http', host: 'admin-pi.fritz.box', port: '3000', path: 'healthz' }, # grafana
-    # { protocol: 'http', host: 'admin-pi.fritz.box', port: '3100', path: 'ready' }, # loki
-    # { protocol: 'http', host: 'admin-pi.fritz.box', port: '9090', path: '-/healthy' }, # prometheus
-    # { protocol: 'http', host: 'admin-pi.fritz.box', port: '9115', path: 'metrics' } # blackbox-exporter
   ]
 
   services.each do |srv|
