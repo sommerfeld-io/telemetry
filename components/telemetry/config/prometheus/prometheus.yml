@@ -31,10 +31,12 @@ scrape_configs:
     static_configs:
       - targets:
           - admin-pi.fritz.box:9100
+          - testrunner-01-pi.fritz.box:9100
         labels:
           group: "node-metrics"
       - targets:
           - admin-pi.fritz.box:9110
+          - testrunner-01-pi.fritz.box:9110
         labels:
           group: "docker-metrics"
 
