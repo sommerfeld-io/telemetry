@@ -11,8 +11,8 @@ scrape_configs:
       - targets: ['localhost:9090']
 
   - job_name: 'workstation-metrics'
-    scrape_interval: 15s
-    scrape_timeout: 15s
+    scrape_interval: 30s
+    scrape_timeout: 25s
     static_configs:
       - targets:
           - caprica.fritz.box:9100
@@ -26,8 +26,8 @@ scrape_configs:
           group: "docker-metrics"
 
   - job_name: 'raspi-metrics'
-    scrape_interval: 15s
-    scrape_timeout: 15s
+    scrape_interval: 30s
+    scrape_timeout: 25s
     static_configs:
       - targets:
           - admin-pi.fritz.box:9100
@@ -45,7 +45,7 @@ scrape_configs:
     params:
       module: [http_2xx]
     scrape_interval: 60s
-    scrape_timeout: 15s
+    scrape_timeout: 30s
     static_configs:
       - targets:
           - www.fb-brunnenbau.de
@@ -64,7 +64,7 @@ scrape_configs:
     params:
       module: [http_2xx]
     scrape_interval: 60s
-    scrape_timeout: 15s
+    scrape_timeout: 30s
     static_configs:
       - targets:
           - sommerfeld-io.github.io/configs-homelab
@@ -83,8 +83,8 @@ scrape_configs:
       username: admin
       password: admin
     metrics_path: /metrics
-    scrape_interval: 15s
-    scrape_timeout: 15s
+    scrape_interval: 30s
+    scrape_timeout: 25s
     static_configs:
       - targets:
            # name of the docker compose service
@@ -95,8 +95,8 @@ scrape_configs:
 
   - job_name: 'loki-metrics'
     metrics_path: /metrics
-    scrape_interval: 15s
-    scrape_timeout: 15s
+    scrape_interval: 30s
+    scrape_timeout: 25s
     static_configs:
       - targets:
            # name of the docker compose service
