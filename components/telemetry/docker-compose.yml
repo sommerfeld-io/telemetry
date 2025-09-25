@@ -4,6 +4,10 @@ volumes:
   loki_data:
   prometheus_data:
 
+networks:
+  default:
+    driver: bridge
+
 services:
 
   prometheus:
@@ -20,6 +24,8 @@ services:
       - "--storage.tsdb.retention.time=360d"
     ports:
       - 9090:9090
+    networks:
+      - default
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:9090/-/healthy"]
       interval: 10s
@@ -38,6 +44,8 @@ services:
     command: -config.file=/etc/loki/local-config.yml
     ports:
       - 3100:3100
+    networks:
+      - default
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:3100/ready"]
       interval: 10s
@@ -77,15 +85,17 @@ services:
     ports:
       - 3000:3000
     # entrypoint: ["/bin/bash", "/entrypoint.sh"]
+    networks:
+      - default
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/api/health"]
       interval: 10s
       timeout: 10s
       retries: 6
 
-  blackbox_exporter:
+  blackbox-exporter:
     image: prom/blackbox-exporter:v0.27.0
-    container_name: blackbox_exporter
+    container_name: blackbox-exporter
     restart: unless-stopped
     depends_on:
       prometheus:
@@ -98,6 +108,8 @@ services:
       - "--config.file=/etc/prometheus/blackbox-exporter.yml"
     ports:
       - 9115:9115
+    networks:
+      - default
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:9115"]
       interval: 10s
@@ -130,19 +142,20 @@ services:
       - 2345:12345
       - 4317:4317
       - 4318:4318
+    networks:
+      - default
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
   test-inspec:
     image: chef/inspec:5.22.76
     container_name: test-inspec
-    user: 1000:1000
     profiles:
       - test
     depends_on:
       prometheus:
         condition: service_healthy
-      blackbox_exporter:
+      blackbox-exporter:
         condition: service_healthy
       grafana:
         condition: service_healthy
@@ -151,8 +164,11 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
+      # - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./tests:/tests
     working_dir: /tests
     command: exec inspec/baseline --no-distinct-exit --chef-license=accept
+    networks:
+      - default
     extra_hosts:
       - "host.docker.internal:host-gateway"
