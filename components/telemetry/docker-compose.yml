@@ -148,7 +148,7 @@ services:
       - "host.docker.internal:host-gateway"
 
   test-inspec:
-    image: chef/inspec:5.22.76
+    image: chef/inspec:5.23
     container_name: test-inspec
     profiles:
       - test
