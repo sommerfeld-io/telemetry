@@ -45,3 +45,5 @@ tasks:
     cmds:
       - for: ['yaml', 'filenames', 'folders', 'workflows', 'markdown-links']
         cmd: docker compose up lint-{{ .ITEM }} --exit-code-from lint-{{ .ITEM }}
+      - for: ['telemetry']
+        cmd: docker compose up inspec-check-{{ .ITEM }} --exit-code-from inspec-check-{{ .ITEM }}
