@@ -51,13 +51,3 @@ services:
     command: --config .lychee.toml .
     tty: *tty
     user: root # TODO ... do not run as root !!!!!
-
-  inspec-check-telemetry:
-    image: chef/inspec:5.22.76
-    container_name: inspec-check-telemetry
-    volumes:
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-      - ./components/telemetry/tests:/tests
-    working_dir: /tests
-    command: check inspec/baseline --chef-license=accept

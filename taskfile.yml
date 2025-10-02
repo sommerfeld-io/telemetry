@@ -34,7 +34,7 @@ tasks:
       - rm -rf .cache
       - rm -rf node_modules
       - rm -rf target
-      - sudo rm -f components/telemetry/tests/inspec/baseline/inspec.lock
+      - sudo rm -f tests/telemetry/inspec/baseline/inspec.lock
       - find . -type f -exec chmod ugo+r {} +
       - find . -type d -exec chmod 755 {} +
 
@@ -46,4 +46,4 @@ tasks:
       - for: ['yaml', 'filenames', 'folders', 'workflows', 'markdown-links']
         cmd: docker compose up lint-{{ .ITEM }} --exit-code-from lint-{{ .ITEM }}
       - for: ['telemetry']
-        cmd: docker compose up inspec-check-{{ .ITEM }} --exit-code-from inspec-check-{{ .ITEM }}
+        cmd: docker compose -f tests/{{ .ITEM }}/docker-compose.yml up check-profile --exit-code-from check-profile

@@ -1,0 +1,25 @@
+---
+services:
+
+  check-profile:
+    image: chef/inspec:5.22.76
+    container_name: check-profile
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - .:/tests
+    working_dir: /tests
+    command: check inspec/baseline --chef-license=accept
+
+  test:
+    image: chef/inspec:5.22.76
+    container_name: test
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      # - /var/run/docker.sock:/var/run/docker.sock:ro
+      - .:/tests
+    working_dir: /tests
+    command: exec inspec/baseline --no-distinct-exit --chef-license=accept
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

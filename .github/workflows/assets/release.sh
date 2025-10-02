@@ -13,7 +13,7 @@ VERSION="$1"
 ## @arg $1 string The version that should be written to the files.
 function incrementVersionsInYaml() {
   yaml_files=(
-    "components/telemetry/tests/inspec/baseline/inspec.yml"
+    "tests/telemetry/inspec/baseline/inspec.yml"
   )
 
   for file in "${yaml_files[@]}"; do

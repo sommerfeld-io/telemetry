@@ -81,11 +81,15 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Run inspec-check--${{ matrix.profile }} from docker-compose.yml
+      - name: Run check-profile in test/${{ matrix.profile }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROFILE: ${{ matrix.profile }}
-        run: docker compose up "inspec-check-$PROFILE" --exit-code-from "inspec-check-$PROFILE"
+        run: |
+          (
+            cd "tests/$PROFILE" || exit 1
+            docker compose up check-profile --exit-code-from check-profile
+          )
         shell: bash
 
   files-should-exist:
