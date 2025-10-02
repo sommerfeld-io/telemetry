@@ -66,6 +66,28 @@ jobs:
         run: docker compose up "lint-$LINTER" --exit-code-from "lint-$LINTER"
         shell: bash
 
+  inspec-profile-check:
+    runs-on: ubuntu-latest
+    name: ${{ matrix.profile }}
+    strategy:
+      matrix:
+        profile: ['telemetry']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+      - name: Login to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Run inspec-check--${{ matrix.profile }} from docker-compose.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROFILE: ${{ matrix.profile }}
+        run: docker compose up "inspec-check-$PROFILE" --exit-code-from "inspec-check-$PROFILE"
+        shell: bash
+
   files-should-exist:
     runs-on: ubuntu-latest
     steps:
@@ -88,6 +110,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [
       'lint',
+      'inspec-profile-check',
       'shellcheck',
       'files-should-exist',
     ]
