@@ -1,6 +1,6 @@
 ---
-name: baseline
-title: baseline profile
+name: telemetry baseline
+title: telemetry baseline profile
 maintainer: Sebastian Sommerfeld
 copyright: sommerfeld.io
 copyright_email: sebastian@sommerfeld.io
