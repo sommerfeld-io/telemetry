@@ -1,0 +1,11 @@
+---
+name: metrics baseline
+title: metrics baseline profile
+maintainer: Sebastian Sommerfeld
+copyright: sommerfeld.io
+copyright_email: sebastian@sommerfeld.io
+license: MIT
+summary: baseline compliance profile for the metrics stack on Raspberry Pi
+version: 0.0.0
+supports:
+  platform: os
