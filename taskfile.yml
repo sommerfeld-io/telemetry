@@ -34,7 +34,7 @@ tasks:
       - rm -rf .cache
       - rm -rf node_modules
       - rm -rf target
-      - sudo rm -f .devcontainer/ops
+      - sudo rm -rf .devcontainer/ops
       - sudo rm -f tests/telemetry/inspec/baseline/inspec.lock
       - find . -type f -exec chmod ugo+r {} +
       - find . -type d -exec chmod 755 {} +
