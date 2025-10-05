@@ -1,8 +1,6 @@
 {
 	"rules": [
 		".devcontainer",
-		".devcontainer/ops",
-		".devcontainer/ops/assets",
 
 		".github",
 		".github/workflows",

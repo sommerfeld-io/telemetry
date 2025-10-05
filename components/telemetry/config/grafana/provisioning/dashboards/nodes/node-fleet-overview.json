@@ -63,7 +63,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 4,
+  "id": 16,
   "links": [
     {
       "asDropdown": true,
@@ -625,7 +625,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-BlYlRd"
+            "mode": "continuous-BlPu"
           },
           "custom": {
             "axisBorderShow": false,
@@ -787,7 +787,7 @@
         "defaults": {
           "color": {
             "fixedColor": "blue",
-            "mode": "fixed"
+            "mode": "continuous-BlPu"
           },
           "custom": {
             "axisBorderShow": false,
@@ -1263,7 +1263,7 @@
         "defaults": {
           "color": {
             "fixedColor": "blue",
-            "mode": "fixed"
+            "mode": "continuous-BlPu"
           },
           "custom": {
             "axisBorderShow": false,
@@ -1753,5 +1753,5 @@
   "timezone": "utc",
   "title": "Node / Fleet Overview",
   "uid": "node_fleet_overview",
-  "version": 16
+  "version": 17
 }

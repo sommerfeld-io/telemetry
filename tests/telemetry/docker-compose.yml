@@ -3,7 +3,6 @@ services:
 
   check-profile:
     image: chef/inspec:5.22.76
-    container_name: check-profile
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -13,7 +12,6 @@ services:
 
   test:
     image: chef/inspec:5.22.76
-    container_name: test
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
