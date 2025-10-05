@@ -121,7 +121,7 @@ services:
   ## Prometheus but sends metrics to Prometheus by itself. So without an Alloy
   ## instance running, no logs will be shipped to Loki when testing on locally.
   dev-alloy:
-    image: grafana/alloy:v1.10.2
+    image: grafana/alloy:v1.11.0
     container_name: dev-alloy
     profiles:
       - dev
