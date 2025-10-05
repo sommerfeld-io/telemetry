@@ -14,7 +14,7 @@ services:
     network_mode: host
 
   alloy:
-    image: grafana/alloy:v1.10.2
+    image: grafana/alloy:v1.11.0
     container_name: alloy
     restart: always
     environment:
