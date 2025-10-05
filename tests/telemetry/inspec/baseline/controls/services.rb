@@ -4,7 +4,7 @@ services = [
   { host: 'host.docker.internal', port: '3000', path: 'healthz', container: 'grafana' },
   { host: 'host.docker.internal', port: '3100', path: 'ready', container: 'loki' },
   { host: 'host.docker.internal', port: '9090', path: '-/healthy', container: 'prometheus' },
-  { host: 'host.docker.internal', port: '9115', path: 'metrics', container: 'blackbox-exporter' },
+  { host: 'host.docker.internal', port: '9115', path: 'metrics', container: 'blackbox_exporter' },
 ]
 protocol = 'http'
 
