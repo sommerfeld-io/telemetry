@@ -94,7 +94,7 @@ services:
       retries: 6
 
   blackbox-exporter:
-    image: prom/blackbox_exporter:v0.27.0
+    image: prom/blackbox-exporter:v0.27.0
     container_name: blackbox_exporter
     restart: unless-stopped
     depends_on:
@@ -103,9 +103,9 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - ./config/prometheus/blackbox_exporter.yml:/etc/prometheus/blackbox_exporter.yml:ro
+      - ./config/prometheus/blackbox-exporter.yml:/etc/prometheus/blackbox-exporter.yml:ro
     command:
-      - "--config.file=/etc/prometheus/blackbox_exporter.yml"
+      - "--config.file=/etc/prometheus/blackbox-exporter.yml"
     ports:
       - 9115:9115
     networks:
