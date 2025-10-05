@@ -110,13 +110,64 @@ jobs:
 
   # ----- Release stage ---------------------------------------------------------------------------
 
-  release-code:
+  test-compose-stacks:
     runs-on: ubuntu-latest
+    name: ${{ matrix.profile }}
     needs: [
       'lint',
       'inspec-profile-check',
       'shellcheck',
       'files-should-exist',
+    ]
+    strategy:
+      matrix:
+        profile: ['telemetry']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+      - name: Login to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Startup compose stack in components/${{ matrix.profile }} (= system under test)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          (
+            cd "components/$PROFILE" || exit 1
+            docker compose up -d --wait
+          )
+        shell: bash
+      - name: Run tests from tests/${{ matrix.profile }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          (
+            cd "tests/$PROFILE" || exit 1
+            docker compose up test --exit-code-from test
+          )
+        shell: bash
+      - name: Shutdown compose stack in components/${{ matrix.profile }} (= system under test)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          (
+            cd "components/$PROFILE" || exit 1
+            docker compose down --remove-orphans --volumes
+          )
+        shell: bash
+
+  # ----- Release stage ---------------------------------------------------------------------------
+
+  release-code:
+    runs-on: ubuntu-latest
+    needs: [
+      'test-compose-stacks',
     ]
     if: ${{ (github.actor != 'dependabot[bot]') && (github.ref == 'refs/heads/main') }}
     permissions:
