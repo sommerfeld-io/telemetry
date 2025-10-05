@@ -71,7 +71,7 @@ jobs:
     name: ${{ matrix.profile }}
     strategy:
       matrix:
-        profile: ['telemetry']
+        profile: ['telemetry', 'metrics']
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -121,7 +121,7 @@ jobs:
     ]
     strategy:
       matrix:
-        profile: ['telemetry']
+        profile: ['telemetry', 'metrics']
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
