@@ -6,6 +6,6 @@ copyright: sommerfeld.io
 copyright_email: sebastian@sommerfeld.io
 license: MIT
 summary: baseline compliance profile for the telemetry stack on Raspberry Pi
-version: 0.13.2
+version: 0.14.0
 supports:
   platform: os
