@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 2660163376599040,
+  "id": 16,
   "links": [
     {
       "asDropdown": true,
@@ -74,7 +74,7 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 7,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -86,7 +86,7 @@
               "mode": "normal"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "dashed"
             }
           },
           "mappings": [],
@@ -94,12 +94,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -126,11 +122,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17940193463.patch4",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": "${datasource}",
-          "expr": "rate(otelcol_receiver_accepted_spans_total{job=~\"integrations/alloy\", cluster=~\"$cluster\", namespace=~\"$namespace\", job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])\n",
+          "editorMode": "code",
+          "expr": "rate(otelcol_receiver_accepted_spans_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])\n",
           "instant": false,
           "legendFormat": "{{ pod }} / {{ transport }}",
           "range": true,
@@ -167,7 +164,7 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 7,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -179,7 +176,7 @@
               "mode": "normal"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "dashed"
             }
           },
           "mappings": [],
@@ -187,12 +184,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -219,11 +212,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17940193463.patch4",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": "${datasource}",
-          "expr": "rate(otelcol_receiver_refused_spans_total{job=~\"integrations/alloy\", cluster=~\"$cluster\", namespace=~\"$namespace\", job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])\n",
+          "editorMode": "code",
+          "expr": "rate(otelcol_receiver_refused_spans_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])\n",
           "instant": false,
           "legendFormat": "{{ pod }} / {{ transport }}",
           "range": true,
@@ -261,7 +255,7 @@
       "maxDataPoints": 30,
       "options": {
         "calculate": false,
-        "cellGap": 1,
+        "cellGap": 2,
         "color": {
           "exponent": 0.5,
           "fill": "dark-orange",
@@ -294,11 +288,12 @@
           "unit": "ms"
         }
       },
-      "pluginVersion": "12.2.0-17940193463.patch4",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": "${datasource}",
-          "expr": "sum by (le) (increase(rpc_server_duration_milliseconds_bucket{job=~\"integrations/alloy\", cluster=~\"$cluster\", namespace=~\"$namespace\", job=~\"$job\", instance=~\"$instance\", rpc_service=\"opentelemetry.proto.collector.trace.v1.TraceService\"}[$__rate_interval]))\n",
+          "editorMode": "code",
+          "expr": "sum by (le) (increase(rpc_server_duration_milliseconds_bucket{job=~\"$job\", instance=~\"$instance\", rpc_service=\"opentelemetry.proto.collector.trace.v1.TraceService\"}[$__rate_interval]))\n",
           "format": "heatmap",
           "instant": false,
           "legendFormat": "{{le}}",
@@ -350,7 +345,7 @@
       "maxDataPoints": 30,
       "options": {
         "calculate": false,
-        "cellGap": 1,
+        "cellGap": 2,
         "color": {
           "exponent": 0.5,
           "fill": "dark-orange",
@@ -383,11 +378,12 @@
           "unit": "short"
         }
       },
-      "pluginVersion": "12.2.0-17940193463.patch4",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": "${datasource}",
-          "expr": "sum by (le) (increase(otelcol_processor_batch_batch_send_size_bucket{job=~\"integrations/alloy\", cluster=~\"$cluster\", namespace=~\"$namespace\", job=~\"$job\", instance=~\"$instance\"}[$__rate_interval]))\n",
+          "editorMode": "code",
+          "expr": "sum by (le) (increase(otelcol_processor_batch_batch_send_size_bucket{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval]))\n",
           "format": "heatmap",
           "instant": false,
           "legendFormat": "{{le}}",
@@ -425,7 +421,7 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 7,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -437,7 +433,7 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "dashed"
             }
           },
           "mappings": [],
@@ -445,12 +441,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -477,11 +469,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17940193463.patch4",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": "${datasource}",
-          "expr": "otelcol_processor_batch_metadata_cardinality{job=~\"integrations/alloy\", cluster=~\"$cluster\", namespace=~\"$namespace\", job=~\"$job\", instance=~\"$instance\"}\n",
+          "editorMode": "code",
+          "expr": "otelcol_processor_batch_metadata_cardinality{job=~\"$job\", instance=~\"$instance\"}\n",
           "instant": false,
           "legendFormat": "{{ pod }}",
           "range": true,
@@ -530,7 +523,7 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "dashed"
             }
           },
           "mappings": [],
@@ -538,12 +531,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -570,11 +559,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17940193463.patch4",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": "${datasource}",
-          "expr": "rate(otelcol_processor_batch_timeout_trigger_send_total{job=~\"integrations/alloy\", cluster=~\"$cluster\", namespace=~\"$namespace\", job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])\n",
+          "editorMode": "code",
+          "expr": "rate(otelcol_processor_batch_timeout_trigger_send_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])\n",
           "instant": false,
           "legendFormat": "{{ pod }}",
           "range": true,
@@ -624,7 +614,7 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 7,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -636,7 +626,7 @@
               "mode": "normal"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "dashed"
             }
           },
           "mappings": [],
@@ -644,12 +634,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -676,11 +662,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17940193463.patch4",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": "${datasource}",
-          "expr": "rate(otelcol_exporter_sent_spans_total{job=~\"integrations/alloy\", cluster=~\"$cluster\", namespace=~\"$namespace\", job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])\n",
+          "editorMode": "code",
+          "expr": "rate(otelcol_exporter_sent_spans_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])\n",
           "instant": false,
           "legendFormat": "{{ pod }}",
           "range": true,
@@ -717,7 +704,7 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 7,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -729,7 +716,7 @@
               "mode": "normal"
             },
             "thresholdsStyle": {
-              "mode": "off"
+              "mode": "dashed"
             }
           },
           "mappings": [],
@@ -737,12 +724,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -769,11 +752,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0-17940193463.patch4",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": "${datasource}",
-          "expr": "rate(otelcol_exporter_send_failed_spans_total{job=~\"integrations/alloy\", cluster=~\"$cluster\", namespace=~\"$namespace\", job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])\n",
+          "editorMode": "code",
+          "expr": "rate(otelcol_exporter_send_failed_spans_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])\n",
           "instant": false,
           "legendFormat": "{{ pod }}",
           "range": true,
@@ -819,51 +803,20 @@
         "type": "datasource"
       },
       {
+        "allowCustomValue": false,
         "current": {
           "text": "",
           "value": ""
         },
         "datasource": "${datasource}",
-        "label": "Cluster",
-        "name": "cluster",
-        "options": [],
-        "query": {
-          "query": "label_values(alloy_component_controller_running_components{job=~\"integrations/alloy\"}, cluster)\n",
-          "refId": "cluster"
-        },
-        "refresh": 2,
-        "sort": 2,
-        "type": "query"
-      },
-      {
-        "current": {
-          "text": "",
-          "value": ""
-        },
-        "datasource": "${datasource}",
-        "label": "Namespace",
-        "name": "namespace",
-        "options": [],
-        "query": {
-          "query": "label_values(alloy_component_controller_running_components{job=~\"integrations/alloy\", cluster=~\"$cluster\"}, namespace)\n",
-          "refId": "namespace"
-        },
-        "refresh": 2,
-        "sort": 2,
-        "type": "query"
-      },
-      {
-        "current": {
-          "text": "",
-          "value": ""
-        },
-        "datasource": "${datasource}",
+        "definition": "label_values(alloy_component_controller_running_components,job)",
         "label": "Job",
         "name": "job",
         "options": [],
         "query": {
-          "query": "label_values(alloy_component_controller_running_components{job=~\"integrations/alloy\", cluster=~\"$cluster\", namespace=~\"$namespace\"}, job)\n",
-          "refId": "job"
+          "qryType": 1,
+          "query": "label_values(alloy_component_controller_running_components,job)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
         "sort": 2,
@@ -871,19 +824,22 @@
       },
       {
         "allValue": ".*",
+        "allowCustomValue": false,
         "current": {
           "text": "All",
           "value": "$__all"
         },
         "datasource": "${datasource}",
+        "definition": "label_values(alloy_component_controller_running_components{job=~\"$job\"},instance)",
         "includeAll": true,
         "label": "Instance",
         "multi": true,
         "name": "instance",
         "options": [],
         "query": {
-          "query": "label_values(alloy_component_controller_running_components{job=~\"integrations/alloy\", cluster=~\"$cluster\", namespace=~\"$namespace\", job=~\"$job\"}, instance)\n",
-          "refId": "instance"
+          "qryType": 1,
+          "query": "label_values(alloy_component_controller_running_components{job=~\"$job\"},instance)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
         "sort": 2,
@@ -899,5 +855,5 @@
   "timezone": "utc",
   "title": "Alloy / OpenTelemetry",
   "uid": "9b6d37c8603e19e8922133984faad93d",
-  "version": 1
+  "version": 2
 }
