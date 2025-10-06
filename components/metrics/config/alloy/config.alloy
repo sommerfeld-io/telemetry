@@ -52,7 +52,7 @@ loki.process "running_containers" {
         values = {
             env = "prod",
             source = "docker",
-            hostname = env("HOSTNAME"),
+            hostname = sys.env("HOSTNAME"),
         }
     }
     forward_to = [loki.write.running_containers.receiver]

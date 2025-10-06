@@ -51,3 +51,10 @@ services:
     command: --config .lychee.toml .
     tty: *tty
     user: root # TODO ... do not run as root !!!!!
+
+  lint-alloy-config:
+    image: grafana/alloy:v1.11.0
+    volumes: *volumes
+    working_dir: *default-workdir
+    command: validate components/metrics/config/alloy/config.alloy
+    tty: *tty
