@@ -24,6 +24,11 @@ scrape_configs:
           - kobol.fritz.box:9110
         labels:
           group: "docker-metrics"
+      - targets:
+          - caprica.fritz.box:12345
+          - kobol.fritz.box:12345
+        labels:
+          group: "alloy-metrics"
 
   - job_name: 'raspi-metrics'
     scrape_interval: 30s
@@ -39,6 +44,11 @@ scrape_configs:
           - testrunner-01-pi.fritz.box:9110
         labels:
           group: "docker-metrics"
+      - targets:
+          - admin-pi.fritz.box:12345
+          - testrunner-01-pi.fritz.box:12345
+        labels:
+          group: "alloy-metrics"
 
   - job_name: 'websites'
     metrics_path: /probe
