@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 16,
+  "id": 101,
   "links": [
     {
       "asDropdown": true,
@@ -26,7 +26,7 @@
       "includeVars": true,
       "keepTime": true,
       "tags": [
-        "alloy-health"
+        "alloy"
       ],
       "targetBlank": false,
       "title": "Dashboards",
@@ -74,19 +74,18 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 7,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "normal"
             },
             "thresholdsStyle": {
-              "mode": "dashed"
+              "mode": "off"
             }
           },
           "mappings": [],
@@ -94,8 +93,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": 0
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -122,7 +124,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": "${datasource}",
@@ -164,19 +166,18 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 7,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "normal"
             },
             "thresholdsStyle": {
-              "mode": "dashed"
+              "mode": "off"
             }
           },
           "mappings": [],
@@ -184,8 +185,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": 0
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -212,7 +216,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": "${datasource}",
@@ -255,7 +259,7 @@
       "maxDataPoints": 30,
       "options": {
         "calculate": false,
-        "cellGap": 2,
+        "cellGap": 1,
         "color": {
           "exponent": 0.5,
           "fill": "dark-orange",
@@ -288,7 +292,7 @@
           "unit": "ms"
         }
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": "${datasource}",
@@ -345,7 +349,7 @@
       "maxDataPoints": 30,
       "options": {
         "calculate": false,
-        "cellGap": 2,
+        "cellGap": 1,
         "color": {
           "exponent": 0.5,
           "fill": "dark-orange",
@@ -378,7 +382,7 @@
           "unit": "short"
         }
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": "${datasource}",
@@ -421,19 +425,18 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 7,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "dashed"
+              "mode": "off"
             }
           },
           "mappings": [],
@@ -441,8 +444,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": 0
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -469,7 +475,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": "${datasource}",
@@ -516,14 +522,13 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "dashed"
+              "mode": "off"
             }
           },
           "mappings": [],
@@ -531,8 +536,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": 0
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -559,7 +567,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": "${datasource}",
@@ -614,19 +622,18 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 7,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "normal"
             },
             "thresholdsStyle": {
-              "mode": "dashed"
+              "mode": "off"
             }
           },
           "mappings": [],
@@ -634,8 +641,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": 0
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -662,7 +672,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": "${datasource}",
@@ -704,19 +714,18 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 7,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "normal"
             },
             "thresholdsStyle": {
-              "mode": "dashed"
+              "mode": "off"
             }
           },
           "mappings": [],
@@ -724,8 +733,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": 0
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -752,7 +764,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": "${datasource}",
@@ -770,16 +782,16 @@
   ],
   "preload": false,
   "refresh": "30s",
-  "schemaVersion": 42,
+  "schemaVersion": 41,
   "tags": [
-    "alloy-health"
+    "alloy"
   ],
   "templating": {
     "list": [
       {
         "current": {
-          "text": "grafanacloud-sommerfeldsebastan-prom",
-          "value": "grafanacloud-prom"
+          "text": "Prometheus",
+          "value": "prometheus-datasource"
         },
         "label": "Data Source",
         "name": "datasource",
@@ -791,8 +803,8 @@
       },
       {
         "current": {
-          "text": "grafanacloud-sommerfeldsebastan-logs",
-          "value": "grafanacloud-logs"
+          "text": "Loki",
+          "value": "loki-datasource"
         },
         "label": "Loki Data Source",
         "name": "loki_datasource",
@@ -805,8 +817,8 @@
       {
         "allowCustomValue": false,
         "current": {
-          "text": "",
-          "value": ""
+          "text": "alloy",
+          "value": "alloy"
         },
         "datasource": "${datasource}",
         "definition": "label_values(alloy_component_controller_running_components,job)",
@@ -848,12 +860,12 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "utc",
   "title": "Alloy / OpenTelemetry",
-  "uid": "9b6d37c8603e19e8922133984faad93d",
+  "uid": "alloy-otel",
   "version": 2
 }

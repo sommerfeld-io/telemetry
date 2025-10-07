@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 100,
   "links": [
     {
       "asDropdown": true,
@@ -26,7 +26,7 @@
       "includeVars": true,
       "keepTime": true,
       "tags": [
-        "alloy-health"
+        "alloy"
       ],
       "targetBlank": false,
       "title": "Dashboards",
@@ -88,8 +88,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": 0
+                "color": "blue"
               }
             ]
           },
@@ -121,7 +120,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": {
@@ -130,7 +129,7 @@
           },
           "direction": "backward",
           "editorMode": "code",
-          "expr": "sum(count_over_time({source=~\"$source\", hostname=~\"$hostname\"}[5m]))\n",
+          "expr": "sum(count_over_time({job=~\"$job\"}[5m]))\n",
           "queryType": "range",
           "refId": "A"
         }
@@ -147,8 +146,8 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "blue",
-            "mode": "fixed"
+            "fixedColor": "text",
+            "mode": "thresholds"
           },
           "mappings": [],
           "noValue": "No data",
@@ -156,8 +155,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": 0
+                "color": "blue"
               }
             ]
           },
@@ -189,7 +187,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": {
@@ -198,7 +196,7 @@
           },
           "direction": "backward",
           "editorMode": "code",
-          "expr": "sum(count_over_time({source=~\"$source\", hostname=~\"$hostname\"}[5m]))\n",
+          "expr": "sum(count_over_time({job=~\"$job\"}[5m]))\n",
           "queryType": "range",
           "refId": "A"
         }
@@ -216,8 +214,8 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "blue",
-            "mode": "fixed"
+            "fixedColor": "text",
+            "mode": "thresholds"
           },
           "mappings": [],
           "noValue": "1.0.2",
@@ -225,12 +223,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "blue"
               }
             ]
           },
@@ -262,7 +255,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "refId": "A"
@@ -306,7 +299,6 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -321,8 +313,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": 0
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           },
@@ -457,7 +452,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": {
@@ -466,7 +461,7 @@
           },
           "direction": "backward",
           "editorMode": "code",
-          "expr": "sum by (level) (count_over_time({source=~\"$source\", hostname=~\"$hostname\"}\n|~ \"$regex_search\"\n\n[$__interval]))\n",
+          "expr": "sum by (level) (count_over_time({job=~\"$job\",instance=~\"$instance\",level=~\"$level\"}\n|~ \"$regex_search\"\n\n[$__interval]))\n",
           "legendFormat": "{{ level }}",
           "queryType": "range",
           "refId": "A"
@@ -494,7 +489,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 23,
+        "h": 21,
         "w": 24,
         "x": 0,
         "y": 8
@@ -511,7 +506,7 @@
         "sortOrder": "Descending",
         "wrapLogMessage": true
       },
-      "pluginVersion": "12.2.0",
+      "pluginVersion": "12.0.2+security-01",
       "targets": [
         {
           "datasource": {
@@ -520,7 +515,7 @@
           },
           "direction": "backward",
           "editorMode": "code",
-          "expr": "{source=~\"$source\", hostname=~\"$hostname\"} \n|~ \"$regex_search\"\n\n\n",
+          "expr": "{job=~\"$job\",instance=~\"$instance\",level=~\"$level\"} \n|~ \"$regex_search\"\n\n\n",
           "queryType": "range",
           "refId": "A"
         }
@@ -531,16 +526,16 @@
   ],
   "preload": false,
   "refresh": "30s",
-  "schemaVersion": 42,
+  "schemaVersion": 41,
   "tags": [
-    "alloy-health"
+    "alloy"
   ],
   "templating": {
     "list": [
       {
         "current": {
-          "text": "grafanacloud-sommerfeldsebastan-logs",
-          "value": "grafanacloud-logs"
+          "text": "Loki",
+          "value": "loki-datasource"
         },
         "label": "Loki data source",
         "name": "loki_datasource",
@@ -554,9 +549,7 @@
         "allValue": ".+",
         "allowCustomValue": false,
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -566,16 +559,15 @@
           "uid": "${loki_datasource}"
         },
         "definition": "",
-        "description": "",
         "includeAll": true,
-        "label": "Source",
+        "label": "Job",
         "multi": true,
-        "name": "source",
+        "name": "job",
         "options": [],
         "query": {
-          "label": "source",
+          "label": "job",
           "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "",
+          "stream": "{job=~\"alloy.*\"}",
           "type": 1
         },
         "refresh": 2,
@@ -583,12 +575,10 @@
         "type": "query"
       },
       {
-        "allValue": ".+",
+        "allValue": ".*",
         "allowCustomValue": false,
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -598,16 +588,41 @@
           "uid": "${loki_datasource}"
         },
         "definition": "",
-        "description": "",
         "includeAll": true,
-        "label": "Hostname",
+        "label": "Instance",
         "multi": true,
-        "name": "hostname",
+        "name": "instance",
         "options": [],
         "query": {
-          "label": "hostname",
+          "label": "instance",
           "refId": "LokiVariableQueryEditor-VariableQuery",
-          "stream": "",
+          "stream": "{job=~\"alloy.*\",job=~\"$job\"}",
+          "type": 1
+        },
+        "refresh": 2,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "loki",
+          "uid": "${loki_datasource}"
+        },
+        "definition": "",
+        "includeAll": true,
+        "label": "Level",
+        "multi": true,
+        "name": "level",
+        "options": [],
+        "query": {
+          "label": "level",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "{job=~\"alloy.*\",job=~\"$job\",instance=~\"$instance\"}",
           "type": 1
         },
         "refresh": 2,
@@ -634,12 +649,12 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "utc",
   "title": "Alloy / Logs Overview",
-  "uid": "53c1ecddc3a1d5d4b8d6cd0c23676c31",
+  "uid": "alloy-logs-overview",
   "version": 2
 }
