@@ -93,7 +93,7 @@ services:
       timeout: 10s
       retries: 6
 
-  blackbox-exporter:
+  blackbox_exporter:
     image: prom/blackbox-exporter:v0.27.0
     container_name: blackbox_exporter
     restart: unless-stopped
