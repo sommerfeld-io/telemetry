@@ -36,17 +36,23 @@ scrape_configs:
     static_configs:
       - targets:
           - admin-pi.fritz.box:9100
-          - testrunner-01-pi.fritz.box:9100
+          - runner-04-pi.fritz.box:9100
+          - runner-05-pi.fritz.box:9100
+          - runner-06-pi5.fritz.box:9100
         labels:
           group: "node-metrics"
       - targets:
           - admin-pi.fritz.box:9110
-          - testrunner-01-pi.fritz.box:9110
+          - runner-04-pi.fritz.box:9110
+          - runner-05-pi.fritz.box:9110
+          - runner-06-pi5.fritz.box:9110
         labels:
           group: "docker-metrics"
       - targets:
           - admin-pi.fritz.box:12345
-          - testrunner-01-pi.fritz.box:12345
+          - runner-04-pi.fritz.box:12345
+          - runner-05-pi.fritz.box:12345
+          - runner-06-pi5.fritz.box:12345
         labels:
           group: "alloy-metrics"
 
