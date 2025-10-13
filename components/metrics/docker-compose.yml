@@ -20,7 +20,7 @@ services:
       start_period: 10s
 
   alloy:
-    image: grafana/alloy:v1.11.0
+    image: grafana/alloy:v1.11.2
     container_name: alloy
     restart: always
     environment:
