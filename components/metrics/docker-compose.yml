@@ -4,7 +4,7 @@ services:
   node_exporter:
     image: prom/node-exporter:v1.9.1
     container_name: node_exporter
-    restart: always
+    restart: unless-stopped
     volumes:
       - /:/host:ro,rslave
       - /etc/timezone:/etc/timezone:ro
@@ -22,7 +22,7 @@ services:
   alloy:
     image: grafana/alloy:v1.11.2
     container_name: alloy
-    restart: always
+    restart: unless-stopped
     environment:
       # additional data which should be available in config.alloy
       - HOSTNAME=${HOSTNAME}
@@ -46,7 +46,7 @@ services:
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.52.1
     container_name: cadvisor
-    restart: always
+    restart: unless-stopped
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
