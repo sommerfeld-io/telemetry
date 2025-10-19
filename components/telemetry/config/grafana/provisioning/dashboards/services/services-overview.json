@@ -1306,7 +1306,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Service Overview",
+  "title": "Web Service Overview",
   "uid": "services-overview",
   "version": 6
 }
