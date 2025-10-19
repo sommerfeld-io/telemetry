@@ -91,7 +91,7 @@ groups:
         panelId: 1
         noDataState: OK
         execErrState: Error
-        for: 5m
+        for: 25m
         annotations:
           __dashboardUid__: services-overview
           __panelId__: "1"
