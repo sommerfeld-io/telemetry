@@ -26,4 +26,4 @@ To start the telemetry stack with metrics and logs locally for development, run 
 
 > :zap: **Note**: The development Alloy instance uses port `2345` (instead of `12345`) to avoid conflicts with Alloy instances that might be running on the host machine and provide data to the production setup.
 
-**Tests:** To run some *tests* after starting the telemetry stack, run `docker compose up` in the `tests/telemetry` folder. The goal of the tests is to verify that all services defined in the `components/telemetry/docker-compose.yml` can be started successfully in the local environment. It is not intended to audit or check the status of services running on remote machines or Raspberry Pi nodes.
+**Tests:** To run some tests after starting the telemetry stack, run `docker compose up` in the `tests/telemetry` folder. The goal of the tests is to verify that all services defined in the `components/telemetry/docker-compose.yml` can be started successfully in the local environment. It is not intended to audit or check the status of services running on remote machines or Raspberry Pi nodes.
