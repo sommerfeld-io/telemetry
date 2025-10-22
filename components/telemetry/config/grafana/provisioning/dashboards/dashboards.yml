@@ -41,3 +41,10 @@ providers:
     deleteFromDatabase: true
     options:
       path: /etc/grafana/provisioning/dashboards/services
+  - name: 'tests'
+    orgId: 1
+    folder: 'Tests'
+    type: file
+    deleteFromDatabase: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/tests
