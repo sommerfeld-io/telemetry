@@ -14,14 +14,12 @@
         "components/logs",
         "components/telemetry",
 
-        "components/*/config/alloy",
-        "components/*/config/grafana/provisioning/alerting",
-        "components/*/config/grafana/provisioning/dashboards",
-        "components/*/config/grafana/provisioning/dashboards/*",
-        "components/*/config/grafana/provisioning/datasources",
-        "components/*/config/grafana/provisioning/plugins",
-        "components/*/config/loki",
-        "components/*/config/prometheus",
+        "components/*/config/*",
+        "components/*/config/*/provisioning/alerting",
+        "components/*/config/*/provisioning/dashboards",
+        "components/*/config/*/provisioning/dashboards/*",
+        "components/*/config/*/provisioning/datasources",
+        "components/*/config/*/provisioning/plugins",
 
         "tests/*/inspec/baseline/controls",
 
