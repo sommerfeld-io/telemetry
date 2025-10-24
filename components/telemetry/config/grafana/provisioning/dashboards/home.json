@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 0,
   "links": [],
   "panels": [
     {
@@ -67,7 +66,7 @@
                 "value": [
                   {
                     "targetBlank": true,
-                    "title": "${__data.fields.label}",
+                    "title": "${__data.fields.url}",
                     "url": "${__data.fields.url}"
                   }
                 ]
@@ -223,5 +222,5 @@
   "timezone": "browser",
   "title": "Home",
   "uid": "home",
-  "version": 3
+  "version": 4
 }

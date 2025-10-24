@@ -78,6 +78,8 @@ services:
       - GF_FEATURE_TOGGLES_ENABLE=grafanaManagedRecordingRules
       # Plugins
       - GF_INSTALL_PLUGINS=yesoreyeram-infinity-datasource
+      # Default Home Dashboard
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/home.json
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
