@@ -31,6 +31,5 @@ export default function() {
         let res = http.get(buildUrl(config.baseUrl, endpoint));
         expect.soft(res.status).toBe(200);
     });
-
     sleep(1);
 }

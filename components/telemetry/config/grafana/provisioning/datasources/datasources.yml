@@ -39,3 +39,15 @@ datasources:
     isDefault: false
     version: 1
     editable: true
+  - name: Infinity
+    type: yesoreyeram-infinity-datasource
+    access: proxy
+    orgId: 1
+    uid: infinity
+    isDefault: false
+    version: 1
+    editable: true
+    jsonData:
+      timeout: 30 # Optional: Set default timeout in seconds
+      headers: [] # Optional: Set default headers
+      auth_method: "none" # Optional: Authentication settings (can be overridden per query)

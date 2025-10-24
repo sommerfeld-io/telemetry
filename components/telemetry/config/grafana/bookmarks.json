@@ -1,0 +1,17 @@
+[
+  {
+    "label": "Grafana",
+    "url": "http://admin-pi.fritz.box:3000",
+    "node": "admin-pi"
+  },
+  {
+    "label": "Prometheus",
+    "url": "http://admin-pi.fritz.box:9090",
+    "node": "admin-pi"
+  },
+  {
+    "label": "Spring Petclinic",
+    "url": "http://runner-04-pi.fritz.box:8080",
+    "node": "runner-04-pi"
+  }
+]

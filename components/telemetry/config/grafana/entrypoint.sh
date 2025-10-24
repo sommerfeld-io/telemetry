@@ -1,6 +1,7 @@
 #!/bin/bash
 
 readonly PLUGINS=(
+  'yesoreyeram-infinity-datasource'
   #'grafana-github-datasource'
   # Add more plugin names here
 )
