@@ -36,19 +36,6 @@
   ],
   "panels": [
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 3,
-      "panels": [],
-      "title": "Row title",
-      "type": "row"
-    },
-    {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
         "uid": "${infinity_ds}"
@@ -151,7 +138,7 @@
         "h": 9,
         "w": 8,
         "x": 0,
-        "y": 1
+        "y": 0
       },
       "id": 1,
       "links": [
@@ -455,7 +442,7 @@
         "h": 9,
         "w": 16,
         "x": 8,
-        "y": 1
+        "y": 0
       },
       "id": 2,
       "links": [
@@ -729,7 +716,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 9
       },
       "id": 4,
       "panels": [],
@@ -780,7 +767,7 @@
         "h": 3,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 10
       },
       "id": 5,
       "links": [
@@ -842,7 +829,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 13
       },
       "id": 6,
       "panels": [],
@@ -908,7 +895,7 @@
         "h": 3,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 14
       },
       "id": 7,
       "links": [
@@ -1024,9 +1011,7 @@
       {
         "allowCustomValue": false,
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -1055,9 +1040,7 @@
         "allValue": ".+",
         "allowCustomValue": false,
         "current": {
-          "text": [
-            "All"
-          ],
+          "text": "All",
           "value": [
             "$__all"
           ]
@@ -1085,12 +1068,12 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Home",
   "uid": "home",
-  "version": 4
+  "version": 5
 }
