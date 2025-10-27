@@ -74,11 +74,10 @@ services:
       - GF_UNIFIED_ALERTING_STATE_HISTORY_ENABLED=true
       - GF_UNIFIED_ALERTING_STATE_HISTORY_BACKEND=loki
       - GF_UNIFIED_ALERTING_STATE_HISTORY_LOKI_REMOTE_URL=http://loki:3100
-      # Misc
-      - GF_FEATURE_TOGGLES_ENABLE=grafanaManagedRecordingRules
       # Plugins
       - GF_INSTALL_PLUGINS=yesoreyeram-infinity-datasource
-      # Default Home Dashboard
+      # Misc
+      - GF_FEATURE_TOGGLES_ENABLE=grafanaManagedRecordingRules
       - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/home.json
     volumes:
       - /etc/timezone:/etc/timezone:ro

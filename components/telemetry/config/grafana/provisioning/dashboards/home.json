@@ -160,7 +160,7 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 6,
+        "w": 5,
         "x": 0,
         "y": 0
       },
@@ -464,8 +464,8 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 14,
-        "x": 6,
+        "w": 15,
+        "x": 5,
         "y": 0
       },
       "id": 2,
@@ -1165,7 +1165,7 @@
       },
       "id": 12,
       "panels": [],
-      "title": "Alloy Status",
+      "title": "Alloy and Loki",
       "type": "row"
     },
     {
@@ -1192,7 +1192,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
+        "w": 3,
         "x": 0,
         "y": 18
       },
@@ -1238,6 +1238,71 @@
     },
     {
       "datasource": "${datasource}",
+      "description": "The number of running components across all running instances.\n",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "components"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 18
+      },
+      "id": 13,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Dashboard: Alloy / Controller",
+          "url": "/d/alloy-controller"
+        }
+      ],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0",
+      "targets": [
+        {
+          "datasource": "${datasource}",
+          "editorMode": "code",
+          "expr": "sum(alloy_component_controller_running_components{job=~\"$job\"})\n",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Running components",
+      "type": "stat"
+    },
+    {
+      "datasource": "${datasource}",
       "description": "The percentage of components which are in a healthy state.\n",
       "fieldConfig": {
         "defaults": {
@@ -1263,9 +1328,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 4,
+        "h": 3,
+        "w": 3,
+        "x": 6,
         "y": 18
       },
       "id": 14,
@@ -1277,7 +1342,7 @@
         }
       ],
       "options": {
-        "colorMode": "value",
+        "colorMode": "background",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -1402,9 +1467,9 @@
         ]
       },
       "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 10,
+        "h": 3,
+        "w": 3,
+        "x": 9,
         "y": 18
       },
       "id": 15,
@@ -1427,7 +1492,7 @@
         "minVizHeight": 16,
         "minVizWidth": 8,
         "namePlacement": "auto",
-        "orientation": "horizontal",
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1546,11 +1611,18 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 16,
+        "w": 3,
+        "x": 12,
         "y": 18
       },
       "id": 16,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Dashboard: Alloy / Resources",
+          "url": "/d/alloy-resources/alloy-resources"
+        }
+      ],
       "options": {
         "colorMode": "background",
         "graphMode": "none",
@@ -1580,6 +1652,79 @@
         }
       ],
       "title": "Metrics",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "description": "Shows the timestamp of the latest metrics received for this integration in the last 24 hours.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "No data",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "dateTimeFromNow"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 15,
+        "y": 18
+      },
+      "id": 17,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Dashboard: Alloy / Resources",
+          "url": "/d/alloy-resources/alloy-resources"
+        }
+      ],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "Time",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "$datasource"
+          },
+          "expr": "vector(1) and on() ((count(up{job=~\"$job\"} == 1) > 0) and (absent(absent(alloy_resources_process_cpu_seconds_total{job=~\"$job\"})))) or vector(0) and on() ((count(up{job=~\"$job\"}) > 0) and (absent(alloy_resources_process_cpu_seconds_total{job=~\"$job\"})))\n",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "now-24h",
+      "title": "Latest metrics received",
       "type": "stat"
     },
     {
@@ -1647,11 +1792,18 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 20,
+        "w": 3,
+        "x": 18,
         "y": 18
       },
       "id": 18,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Dashboard: Alloy / Logs Overview",
+          "url": "/d/alloy-logs-overview/alloy-logs-overview"
+        }
+      ],
       "options": {
         "colorMode": "background",
         "graphMode": "none",
@@ -1687,137 +1839,6 @@
       "type": "stat"
     },
     {
-      "datasource": "${datasource}",
-      "description": "The number of running components across all running instances.\n",
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": 0
-              }
-            ]
-          },
-          "unit": "components"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 0,
-        "y": 21
-      },
-      "id": 13,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "Dashboard: Alloy / Controller",
-          "url": "/d/alloy-controller"
-        }
-      ],
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.2.0",
-      "targets": [
-        {
-          "datasource": "${datasource}",
-          "editorMode": "code",
-          "expr": "sum(alloy_component_controller_running_components{job=~\"$job\"})\n",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Running components",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
-      },
-      "description": "Shows the timestamp of the latest metrics received for this integration in the last 24 hours.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "text",
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "noValue": "No data",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": 0
-              }
-            ]
-          },
-          "unit": "dateTimeFromNow"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 16,
-        "y": 21
-      },
-      "id": 17,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "Time",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.2.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "$datasource"
-          },
-          "expr": "vector(1) and on() ((count(up{job=~\"$job\"} == 1) > 0) and (absent(absent(alloy_resources_process_cpu_seconds_total{job=~\"$job\"})))) or vector(0) and on() ((count(up{job=~\"$job\"}) > 0) and (absent(alloy_resources_process_cpu_seconds_total{job=~\"$job\"})))\n",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": "now-24h",
-      "title": "Latest metrics received",
-      "type": "stat"
-    },
-    {
       "datasource": {
         "type": "datasource",
         "uid": "-- Mixed --"
@@ -1846,11 +1867,18 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 20,
-        "y": 21
+        "w": 3,
+        "x": 21,
+        "y": 18
       },
       "id": 19,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Dashboard: Alloy / Logs Overview",
+          "url": "/d/alloy-logs-overview/alloy-logs-overview"
+        }
+      ],
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -1983,7 +2011,9 @@
         "allValue": ".+",
         "allowCustomValue": false,
         "current": {
-          "text": "All",
+          "text": [
+            "All"
+          ],
           "value": [
             "$__all"
           ]
@@ -2030,5 +2060,5 @@
   "timezone": "browser",
   "title": "Home",
   "uid": "home",
-  "version": 11
+  "version": 13
 }
