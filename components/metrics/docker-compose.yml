@@ -2,7 +2,7 @@
 services:
 
   node_exporter:
-    image: prom/node-exporter:v1.9.1
+    image: prom/node-exporter:v1.10.2
     container_name: node_exporter
     restart: unless-stopped
     volumes:
