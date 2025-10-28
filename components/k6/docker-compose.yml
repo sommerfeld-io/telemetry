@@ -15,5 +15,5 @@ services:
     working_dir: *default-workdir
     environment:
       - TARGET_URL=http://runner-04-pi.fritz.box:8080
-    command: run --no-usage-report petclinic.js
+    command: run --no-usage-report --summary-mode full petclinic.js
     tty: *tty
