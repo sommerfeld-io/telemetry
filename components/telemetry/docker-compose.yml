@@ -74,17 +74,20 @@ services:
       - GF_UNIFIED_ALERTING_STATE_HISTORY_ENABLED=true
       - GF_UNIFIED_ALERTING_STATE_HISTORY_BACKEND=loki
       - GF_UNIFIED_ALERTING_STATE_HISTORY_LOKI_REMOTE_URL=http://loki:3100
+      # Plugins
+      - GF_INSTALL_PLUGINS=yesoreyeram-infinity-datasource
       # Misc
       - GF_FEATURE_TOGGLES_ENABLE=grafanaManagedRecordingRules
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/home.json
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - ./config/grafana/provisioning:/etc/grafana/provisioning:ro
-      # - ./config/grafana/entrypoint.sh:/entrypoint.sh
+      - ./config/grafana/entrypoint.sh:/entrypoint.sh
       - grafana_data:/var/lib/grafana
     ports:
       - 3000:3000
-    # entrypoint: ["/bin/bash", "/entrypoint.sh"]
+    entrypoint: ["/bin/bash", "/entrypoint.sh"]
     networks:
       - default
     healthcheck:
@@ -115,32 +118,3 @@ services:
       interval: 10s
       timeout: 10s
       retries: 6
-
-  ## Run compose in profile `dev` to start this service. It is used to ship logs
-  ## to loki and to test Grafana Alloy in development. Alloy is not scraped by
-  ## Prometheus but sends metrics to Prometheus by itself. So without an Alloy
-  ## instance running, no logs will be shipped to Loki when testing on locally.
-  dev-alloy:
-    image: grafana/alloy:v1.11.2
-    container_name: dev-alloy
-    profiles:
-      - dev
-    restart: unless-stopped
-    depends_on:
-      loki:
-        condition: service_healthy
-    environment:
-      # additional data which should be available in config.alloy
-      - HOSTNAME=${HOSTNAME}
-    volumes:
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-      - ./config/alloy/config.alloy:/etc/alloy/config.alloy:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
-    ports:
-      - 2345:12345
-    networks:
-      - default
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
