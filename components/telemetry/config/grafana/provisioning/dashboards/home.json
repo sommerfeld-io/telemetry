@@ -1967,13 +1967,13 @@
       },
       {
         "current": {
-          "text": "https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/k6/components/telemetry/config/grafana/bookmarks.json",
-          "value": "https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/k6/components/telemetry/config/grafana/bookmarks.json"
+          "text": "https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/main/components/telemetry/config/grafana/bookmarks.json",
+          "value": "https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/main/components/telemetry/config/grafana/bookmarks.json"
         },
         "hide": 2,
         "label": "Bookmarks JSON file",
         "name": "bookmarks_file",
-        "query": "https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/k6/components/telemetry/config/grafana/bookmarks.json",
+        "query": "https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/main/components/telemetry/config/grafana/bookmarks.json",
         "skipUrlSync": true,
         "type": "constant"
       },
