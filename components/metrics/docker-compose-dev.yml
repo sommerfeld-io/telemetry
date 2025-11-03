@@ -2,7 +2,7 @@
 services:
 
   dev-alloy:
-    image: grafana/alloy:v1.11.2
+    image: grafana/alloy:v1.11.3
     container_name: dev-alloy
     restart: unless-stopped
     environment:
