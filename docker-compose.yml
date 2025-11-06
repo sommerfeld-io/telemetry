@@ -53,7 +53,7 @@ services:
     user: root # TODO ... do not run as root !!!!!
 
   lint-alloy-config:
-    image: grafana/alloy:v1.11.2
+    image: grafana/alloy:v1.11.3
     volumes: *volumes
     working_dir: *default-workdir
     command: validate components/metrics/config/alloy/config.alloy
