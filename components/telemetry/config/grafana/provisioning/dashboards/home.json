@@ -146,7 +146,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 175
+                "value": 150
               }
             ]
           },
@@ -166,7 +166,7 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 5,
+        "w": 4,
         "x": 0,
         "y": 0
       },
@@ -226,6 +226,161 @@
               "node": "Node",
               "url": "URL"
             }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "mode": "gradient",
+              "type": "color-background"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 95
+              },
+              {
+                "color": "green",
+                "value": 100
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/Uptime|HTTP 2xx/"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 6,
+        "x": 4,
+        "y": 0
+      },
+      "id": 25,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Dashboard: Web Services Overview",
+          "url": "/d/services-overview/web-service-overview"
+        }
+      ],
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg_over_time(probe_success{instance=~\"$instance.*\"}[$__range]) * 100",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "",
+          "range": false,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(\n  count_over_time((probe_http_status_code{instance=~\"$instance.*\"} >= 200 and probe_http_status_code{instance=~\"$instance.*\"} < 300)[1m:])\n  /\n  count_over_time(probe_http_status_code{instance=~\"$instance.*\"}[1m:])\n) * 100",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Web Sites Availability",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "instance",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "job": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Value": "Percentage",
+              "Value #A": "Uptime",
+              "Value #B": "HTTP 2xx",
+              "instance": "Site"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "instance 1"
+              }
+            ]
           }
         }
       ],
@@ -475,8 +630,8 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 15,
-        "x": 5,
+        "w": 10,
+        "x": 10,
         "y": 0
       },
       "id": 2,
@@ -1134,7 +1289,7 @@
         ]
       },
       "gridPos": {
-        "h": 5,
+        "h": 8,
         "w": 24,
         "x": 0,
         "y": 13
@@ -1233,141 +1388,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 18
-      },
-      "id": 6,
-      "panels": [],
-      "title": "Web Services",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "axisPlacement": "auto",
-            "fillOpacity": 70,
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1
-          },
-          "fieldMinMax": false,
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "text": "DOWN"
-                },
-                "1": {
-                  "text": "UP"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 0
-              },
-              {
-                "color": "green",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 24,
-        "x": 0,
-        "y": 19
-      },
-      "id": 21,
-      "maxDataPoints": 100,
-      "options": {
-        "colWidth": 0.9,
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "rowHeight": 0.9,
-        "showValue": "auto",
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.2.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "probe_success{\n    instance=~\"$instance.*\"\n}",
-          "format": "time_series",
-          "instant": false,
-          "interval": "1m",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Availability",
-      "transformations": [
-        {
-          "id": "labelsToFields",
-          "options": {
-            "keepLabels": [
-              "instance"
-            ],
-            "valueLabel": "instance"
-          }
-        }
-      ],
-      "type": "status-history"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 27
+        "y": 21
       },
       "id": 12,
       "panels": [],
@@ -1400,7 +1421,7 @@
         "h": 3,
         "w": 3,
         "x": 0,
-        "y": 28
+        "y": 22
       },
       "id": 11,
       "links": [
@@ -1465,7 +1486,7 @@
         "h": 3,
         "w": 3,
         "x": 3,
-        "y": 28
+        "y": 22
       },
       "id": 13,
       "links": [
@@ -1537,7 +1558,7 @@
         "h": 3,
         "w": 3,
         "x": 6,
-        "y": 28
+        "y": 22
       },
       "id": 14,
       "links": [
@@ -1673,10 +1694,10 @@
         ]
       },
       "gridPos": {
-        "h": 3,
+        "h": 5,
         "w": 3,
         "x": 9,
-        "y": 28
+        "y": 22
       },
       "id": 15,
       "links": [
@@ -1819,7 +1840,7 @@
         "h": 3,
         "w": 3,
         "x": 12,
-        "y": 28
+        "y": 22
       },
       "id": 16,
       "links": [
@@ -1858,79 +1879,6 @@
         }
       ],
       "title": "Metrics",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
-      },
-      "description": "Shows the timestamp of the latest metrics received for this integration in the last 24 hours.",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "text",
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "noValue": "No data",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": 0
-              }
-            ]
-          },
-          "unit": "dateTimeFromNow"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 15,
-        "y": 28
-      },
-      "id": 17,
-      "links": [
-        {
-          "targetBlank": true,
-          "title": "Dashboard: Alloy / Resources",
-          "url": "/d/alloy-resources/alloy-resources"
-        }
-      ],
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "Time",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.2.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "$datasource"
-          },
-          "expr": "vector(1) and on() ((count(up{job=~\"$job\"} == 1) > 0) and (absent(absent(alloy_resources_process_cpu_seconds_total{job=~\"$job\"})))) or vector(0) and on() ((count(up{job=~\"$job\"}) > 0) and (absent(alloy_resources_process_cpu_seconds_total{job=~\"$job\"})))\n",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": "now-24h",
-      "title": "Latest metrics received",
       "type": "stat"
     },
     {
@@ -2000,7 +1948,7 @@
         "h": 3,
         "w": 3,
         "x": 18,
-        "y": 28
+        "y": 22
       },
       "id": 18,
       "links": [
@@ -2049,6 +1997,79 @@
         "type": "datasource",
         "uid": "-- Mixed --"
       },
+      "description": "Shows the timestamp of the latest metrics received for this integration in the last 24 hours.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "No data",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "dateTimeFromNow"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 12,
+        "y": 25
+      },
+      "id": 17,
+      "links": [
+        {
+          "targetBlank": true,
+          "title": "Dashboard: Alloy / Resources",
+          "url": "/d/alloy-resources/alloy-resources"
+        }
+      ],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "Time",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "$datasource"
+          },
+          "expr": "vector(1) and on() ((count(up{job=~\"$job\"} == 1) > 0) and (absent(absent(alloy_resources_process_cpu_seconds_total{job=~\"$job\"})))) or vector(0) and on() ((count(up{job=~\"$job\"}) > 0) and (absent(alloy_resources_process_cpu_seconds_total{job=~\"$job\"})))\n",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "now-24h",
+      "title": "Latest metrics received",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
       "description": "Shows the timestamp of the latest logs received for this integration in the last 24 hours.",
       "fieldConfig": {
         "defaults": {
@@ -2072,10 +2093,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 21,
-        "y": 28
+        "h": 2,
+        "w": 6,
+        "x": 18,
+        "y": 25
       },
       "id": 19,
       "links": [
@@ -2264,12 +2285,12 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Home",
   "uid": "home",
-  "version": 17
+  "version": 18
 }
