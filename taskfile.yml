@@ -39,6 +39,7 @@ tasks:
       - sudo rm -f tests/telemetry/inspec/baseline/inspec.lock
       - find . -type f -exec chmod ugo+r {} +
       - find . -type d -exec chmod 755 {} +
+      - find . -name "*.sh" -type f -exec chmod +x {} +
 
   # ===============================================================================================
 
@@ -49,3 +50,12 @@ tasks:
         cmd: docker compose up lint-{{ .ITEM }} --exit-code-from lint-{{ .ITEM }}
       - for: ['telemetry']
         cmd: docker compose -f tests/{{ .ITEM }}/docker-compose.yml up check-profile --exit-code-from check-profile
+
+  # ===============================================================================================
+
+  run:telemetry:
+    desc: 'Run the telemetry stack'
+    dir: components/telemetry
+    cmds:
+      - docker compose down --remove-orphans
+      - docker compose up

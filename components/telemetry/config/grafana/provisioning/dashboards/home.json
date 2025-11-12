@@ -11,6 +11,12 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
@@ -18,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 0,
   "links": [
     {
       "asDropdown": false,
@@ -176,7 +181,12 @@
       "options": {
         "cellHeight": "sm",
         "showHeader": true,
-        "sortBy": []
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Service"
+          }
+        ]
       },
       "pluginVersion": "12.2.1",
       "targets": [
@@ -495,7 +505,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "node_os_info{job=~\"$job\",instance=~\"$instance\"}",
+          "expr": "node_os_info{job=~\"$job\",instance=~\"$instance:$ne_port\"}",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -506,7 +516,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "node_uname_info{job=~\"$job\",instance=~\"$instance\"}",
+          "editorMode": "code",
+          "expr": "node_uname_info{job=~\"$job\",instance=~\"$instance:$ne_port\"}",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -517,7 +528,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "time() - node_boot_time_seconds{job=~\"$job\",instance=~\"$instance\"}",
+          "editorMode": "code",
+          "expr": "time() - node_boot_time_seconds{job=~\"$job\",instance=~\"$instance:$ne_port\"}",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -528,7 +540,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "avg by (instance) (node_load1{job=~\"$job\",instance=~\"$instance\"})",
+          "editorMode": "code",
+          "expr": "avg by (instance) (node_load1{job=~\"$job\",instance=~\"$instance:$ne_port\"})",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -539,7 +552,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "avg by (instance) (node_load5{job=~\"$job\",instance=~\"$instance\"})",
+          "editorMode": "code",
+          "expr": "avg by (instance) (node_load5{job=~\"$job\",instance=~\"$instance:$ne_port\"})",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -550,7 +564,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "avg by (instance) (node_load15{job=~\"$job\",instance=~\"$instance\"})",
+          "editorMode": "code",
+          "expr": "avg by (instance) (node_load15{job=~\"$job\",instance=~\"$instance:$ne_port\"})",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -561,7 +576,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "count by (instance) (node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance\", mode=\"idle\"})",
+          "editorMode": "code",
+          "expr": "count by (instance) (node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance:$ne_port\", mode=\"idle\"})",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -572,7 +588,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "(((count by (instance) (count(node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance\"}) by (cpu, instance))) \n- \navg by (instance) (sum by (instance, mode)(irate(node_cpu_seconds_total{mode='idle',job=~\"$job\",instance=~\"$instance\"}[$__rate_interval])))) * 100) \n/ \ncount by(instance) (count(node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance\"}) by (cpu, instance))\n",
+          "editorMode": "code",
+          "expr": "(((count by (instance) (count(node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance:$ne_port\"}) by (cpu, instance))) \n- \navg by (instance) (sum by (instance, mode)(irate(node_cpu_seconds_total{mode='idle',job=~\"$job\",instance=~\"$instance:$ne_port\"}[$__rate_interval])))) * 100) \n/ \ncount by(instance) (count(node_cpu_seconds_total{job=~\"$job\",instance=~\"$instance:$ne_port\"}) by (cpu, instance))\n",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -583,7 +600,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$instance\"}",
+          "editorMode": "code",
+          "expr": "node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$instance:$ne_port\"}",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -594,7 +612,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "100 -\n(\n  avg by (instance) (node_memory_MemAvailable_bytes{job=~\"$job\",instance=~\"$instance\"}) /\n  avg by (instance) (node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$instance\"})\n* 100\n)\n",
+          "editorMode": "code",
+          "expr": "100 -\n(\n  avg by (instance) (node_memory_MemAvailable_bytes{job=~\"$job\",instance=~\"$instance:$ne_port\"}) /\n  avg by (instance) (node_memory_MemTotal_bytes{job=~\"$job\",instance=~\"$instance:$ne_port\"})\n* 100\n)\n",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -605,7 +624,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "node_filesystem_size_bytes{job=~\"$job\",instance=~\"$instance\", mountpoint=\"/\",fstype!=\"rootfs\"}",
+          "editorMode": "code",
+          "expr": "node_filesystem_size_bytes{job=~\"$job\",instance=~\"$instance:$ne_port\", mountpoint=\"/\",fstype!=\"rootfs\"}",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -616,7 +636,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "100-(max by (instance) (node_filesystem_avail_bytes{job=~\"$job\",instance=~\"$instance\", fstype!=\"\", mountpoint=\"/\"})\n/\nmax by (instance) (node_filesystem_size_bytes{job=~\"$job\",instance=~\"$instance\", fstype!=\"\", mountpoint=\"/\"}) * 100)\n",
+          "editorMode": "code",
+          "expr": "100-(max by (instance) (node_filesystem_avail_bytes{job=~\"$job\",instance=~\"$instance:$ne_port\", fstype!=\"\", mountpoint=\"/\"})\n/\nmax by (instance) (node_filesystem_size_bytes{job=~\"$job\",instance=~\"$instance:$ne_port\", fstype!=\"\", mountpoint=\"/\"}) * 100)\n",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -627,7 +648,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "count by (instance) (max_over_time(ALERTS{job=~\"$job\",instance=~\"$instance\", alertstate=\"firing\", severity=\"critical\"}[1m])) * group by (instance) (node_uname_info{job=~\"$job\",instance=~\"$instance\"})",
+          "editorMode": "code",
+          "expr": "count by (instance) (max_over_time(ALERTS{job=~\"$job\",instance=~\"$instance:$ne_port\", alertstate=\"firing\", severity=\"critical\"}[1m])) * group by (instance) (node_uname_info{job=~\"$job\",instance=~\"$instance:$ne_port\"})",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -638,7 +660,8 @@
             "type": "prometheus",
             "uid": "${datasource}"
           },
-          "expr": "count by (instance) (max_over_time(ALERTS{job=~\"$job\",instance=~\"$instance\", alertstate=\"firing\", severity=\"warning\"}[1m])) * group by (instance) (node_uname_info{job=~\"$job\",instance=~\"$instance\"})",
+          "editorMode": "code",
+          "expr": "count by (instance) (max_over_time(ALERTS{job=~\"$job\",instance=~\"$instance:$ne_port\", alertstate=\"firing\", severity=\"warning\"}[1m])) * group by (instance) (node_uname_info{job=~\"$job\",instance=~\"$instance:$ne_port\"})",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
@@ -1000,7 +1023,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "count(container_last_seen{job=~\"$job\",image!=\"\"}) by (instance)",
+          "expr": "count(container_last_seen{job=~\"$job\",instance=~\"$instance.*\",image!=\"\"}) by (instance)",
           "intervalFactor": 2,
           "legendFormat": "",
           "metric": "container_last_seen",
@@ -1021,12 +1044,196 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Running"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "d"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Image"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "pill"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "transparent",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 20,
+      "maxPerRow": 6,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.2.1",
+      "repeat": "instance",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "expr": "(time() - container_start_time_seconds{instance=~\"$instance.*\",name=~\".+\"})/86400",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Running containers on $instance",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "container_label_com_docker_compose_project",
+                "container_label_com_docker_compose_project_working_dir",
+                "image",
+                "instance",
+                "name",
+                "Value",
+                "container_label_com_docker_compose_service"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "container_label_com_docker_compose_project": true,
+              "container_label_com_docker_compose_project_working_dir": true,
+              "container_label_com_docker_compose_service": true,
+              "instance": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Value": 6,
+              "container_label_com_docker_compose_project": 5,
+              "container_label_com_docker_compose_project_working_dir": 0,
+              "container_label_com_docker_compose_service": 1,
+              "image": 4,
+              "instance": 2,
+              "name": 3
+            },
+            "renameByName": {
+              "Value": "Running",
+              "container_label_com_docker_compose_project": "Compose Project",
+              "container_label_com_docker_compose_project_working_dir": "Working dir",
+              "container_label_com_docker_compose_service": "Service",
+              "image": "Image",
+              "instance": "Instance",
+              "name": "Name"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "Name"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 18
       },
       "id": 6,
       "panels": [],
@@ -1043,6 +1250,16 @@
         "defaults": {
           "color": {
             "mode": "thresholds"
+          },
+          "custom": {
+            "axisPlacement": "auto",
+            "fillOpacity": 70,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
           },
           "fieldMinMax": false,
           "mappings": [
@@ -1089,39 +1306,27 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 8,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 19
       },
-      "id": 7,
-      "links": [
-        {
-          "title": "Dashboard: Services / Web Service Overview",
-          "url": "/d/services-overview/web-service-overview"
-        }
-      ],
+      "id": 21,
       "maxDataPoints": 100,
       "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "colWidth": 0.9,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
-        "showPercentChange": false,
-        "text": {
-          "titleSize": 12,
-          "valueSize": 12
-        },
-        "textMode": "value_and_name",
-        "wideLayout": true
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
       },
       "pluginVersion": "12.2.1",
       "targets": [
@@ -1132,7 +1337,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "probe_success{\n    instance=~\".*\",\n    job=~\".*\"\n}",
+          "expr": "probe_success{\n    instance=~\"$instance.*\"\n}",
           "format": "time_series",
           "instant": false,
           "interval": "1m",
@@ -1154,7 +1359,7 @@
           }
         }
       ],
-      "type": "stat"
+      "type": "status-history"
     },
     {
       "collapsed": false,
@@ -1162,7 +1367,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 27
       },
       "id": 12,
       "panels": [],
@@ -1195,7 +1400,7 @@
         "h": 3,
         "w": 3,
         "x": 0,
-        "y": 18
+        "y": 28
       },
       "id": 11,
       "links": [
@@ -1260,7 +1465,7 @@
         "h": 3,
         "w": 3,
         "x": 3,
-        "y": 18
+        "y": 28
       },
       "id": 13,
       "links": [
@@ -1332,7 +1537,7 @@
         "h": 3,
         "w": 3,
         "x": 6,
-        "y": 18
+        "y": 28
       },
       "id": 14,
       "links": [
@@ -1471,7 +1676,7 @@
         "h": 3,
         "w": 3,
         "x": 9,
-        "y": 18
+        "y": 28
       },
       "id": 15,
       "links": [
@@ -1614,7 +1819,7 @@
         "h": 3,
         "w": 3,
         "x": 12,
-        "y": 18
+        "y": 28
       },
       "id": 16,
       "links": [
@@ -1686,7 +1891,7 @@
         "h": 3,
         "w": 3,
         "x": 15,
-        "y": 18
+        "y": 28
       },
       "id": 17,
       "links": [
@@ -1795,7 +2000,7 @@
         "h": 3,
         "w": 3,
         "x": 18,
-        "y": 18
+        "y": 28
       },
       "id": 18,
       "links": [
@@ -1870,7 +2075,7 @@
         "h": 3,
         "w": 3,
         "x": 21,
-        "y": 18
+        "y": 28
       },
       "id": 19,
       "links": [
@@ -2028,7 +2233,7 @@
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
-        "regex": "",
+        "regex": "/^(.*?):/",
         "sort": 1,
         "type": "query"
       },
@@ -2043,16 +2248,28 @@
         "query": "grafana:3000",
         "skipUrlSync": true,
         "type": "constant"
+      },
+      {
+        "current": {
+          "text": "9100",
+          "value": "9100"
+        },
+        "hide": 2,
+        "label": "Node Exporter Port",
+        "name": "ne_port",
+        "query": "9100",
+        "skipUrlSync": true,
+        "type": "constant"
       }
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Home",
   "uid": "home",
-  "version": 15
+  "version": 17
 }
