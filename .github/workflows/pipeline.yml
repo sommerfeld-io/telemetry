@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Login to Container Registry
         uses: docker/login-action@v3
         with:
@@ -53,7 +53,7 @@ jobs:
         linter: ['yaml', 'workflows', 'filenames', 'folders', 'alloy-config', 'markdown-links']
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Login to Container Registry
         uses: docker/login-action@v3
         with:
@@ -74,7 +74,7 @@ jobs:
         profile: ['telemetry', 'metrics']
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Login to Container Registry
         uses: docker/login-action@v3
         with:
@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Mandatory files should exist
         uses: chrisreddington/validate-file-exists@v0.0.9
         with:
@@ -124,7 +124,7 @@ jobs:
         profile: ['telemetry', 'metrics']
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Login to Container Registry
         uses: docker/login-action@v3
         with:
@@ -174,7 +174,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{github.ref}}
       - name: Info - package.json
