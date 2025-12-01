@@ -33,7 +33,7 @@ services:
       retries: 6
 
   loki:
-    image: grafana/loki:3.6.1
+    image: grafana/loki:3.6.2
     container_name: loki
     restart: unless-stopped
     volumes:
