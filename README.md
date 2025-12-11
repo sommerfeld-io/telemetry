@@ -1,6 +1,13 @@
 # Telemetry
 
+[file-issues]: https://github.com/sommerfeld-io/telemetry/issues
+[project-board]: https://github.com/orgs/sommerfeld-io/projects/1/views/1
+
 A simple telemetry setup using Docker Compose. This repo provides stacks to run Prometheus, Loki and Grafana and to expose metrics.
+
+- [Sonarcloud Code Quality and Security Analysis](https://sonarcloud.io/project/overview?id=sommerfeld-io_telemetry)
+- [Where to file issues][file-issues]
+- [Project Board for Issues and Pull Requests][project-board]
 
 ![Project Logo](https://raw.githubusercontent.com/sommerfeld-io/telemetry/refs/heads/main/.assets/logo.png)
 
