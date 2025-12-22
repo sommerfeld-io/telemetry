@@ -10,11 +10,10 @@ on:
     paths:
       - .github/workflows/housekeeping-labels.yml
 
-permissions:
-  contents: read
-  issues: write
-  pull-requests: write
-
 jobs:
   housekeeping-labels:
     uses: sommerfeld-io/.github/.github/workflows/housekeeping-labels.yml@main
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
