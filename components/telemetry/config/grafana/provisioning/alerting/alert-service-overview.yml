@@ -99,7 +99,7 @@ groups:
           summary: Service is no longer up and running
         labels:
           notification/channel: google-chat
-          notification/enabled: "true"
+          notification/enabled: "false"
           severity: medium
         isPaused: false
         notification_settings:

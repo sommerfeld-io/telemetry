@@ -75,7 +75,7 @@ groups:
           summary: Root FS usage is above threshold
         labels:
           notification/channel: google-chat
-          notification/enabled: "true"
+          notification/enabled: "false"
           severity: medium
         isPaused: false
         notification_settings:
@@ -144,7 +144,7 @@ groups:
           summary: RAM usage is above threshold
         labels:
           notification/channel: google-chat
-          notification/enabled: "true"
+          notification/enabled: "false"
           severity: medium
         isPaused: false
         notification_settings:
@@ -213,7 +213,7 @@ groups:
           summary: CPU usage is above threshold
         labels:
           notification/channel: google-chat
-          notification/enabled: "true"
+          notification/enabled: "false"
           severity: medium
         isPaused: false
         notification_settings:
