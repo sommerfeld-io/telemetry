@@ -56,11 +56,11 @@ services:
     image: grafana/grafana:12.3.1
     container_name: grafana
     restart: unless-stopped
-    depends_on:
-      prometheus:
-        condition: service_healthy
-      loki:
-        condition: service_healthy
+    # depends_on:
+    #   prometheus:
+    #     condition: service_healthy
+    #   loki:
+    #     condition: service_healthy
     environment:
       # Auth
       - GF_SECURITY_ADMIN_USER=admin
