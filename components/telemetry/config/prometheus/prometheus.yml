@@ -17,16 +17,19 @@ scrape_configs:
       - targets:
           - caprica.fritz.box:9100
           - kobol.fritz.box:9100
+          - picon.fritz.box:9100
         labels:
           group: "node-metrics"
       - targets:
           - caprica.fritz.box:9110
           - kobol.fritz.box:9110
+          - picon.fritz.box:9110
         labels:
           group: "docker-metrics"
       - targets:
           - caprica.fritz.box:12345
           - kobol.fritz.box:12345
+          - picon.fritz.box:12345
         labels:
           group: "alloy-metrics"
 
