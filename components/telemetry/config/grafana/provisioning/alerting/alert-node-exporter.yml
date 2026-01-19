@@ -74,12 +74,9 @@ groups:
           description: Too little space left on device. Root FS usage is above 75%.
           summary: Root FS usage is above threshold
         labels:
-          notification/channel: google-chat
-          notification/enabled: "false"
+          google-chat-enabled: true
           severity: medium
         isPaused: false
-        notification_settings:
-          receiver: google-chat
       # -----------------------------------------------------------------------
       - uid: ram-used
         title: RAM Used (%)
@@ -143,12 +140,9 @@ groups:
           description: RAM usage is above 75%.
           summary: RAM usage is above threshold
         labels:
-          notification/channel: google-chat
-          notification/enabled: "false"
+          google-chat-enabled: true
           severity: medium
         isPaused: false
-        notification_settings:
-          receiver: google-chat
       # -----------------------------------------------------------------------
       - uid: cpu-busy
         title: CPU Busy (%)
@@ -212,9 +206,6 @@ groups:
           description: CPU usage is above 90%.
           summary: CPU usage is above threshold
         labels:
-          notification/channel: google-chat
-          notification/enabled: "false"
+          google-chat-enabled: true
           severity: medium
         isPaused: false
-        notification_settings:
-          receiver: google-chat

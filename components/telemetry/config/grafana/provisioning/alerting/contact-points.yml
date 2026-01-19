@@ -2,9 +2,9 @@
 apiVersion: 1
 contactPoints:
   - orgId: 1
-    name: google-chat
+    name: Google Chat - Homelab
     receivers:
-      - uid: google-chat
+      - uid: google-chat-homelab
         type: googlechat
         settings:
           url: https://chat.googleapis.com/v1/spaces/AAQAnD9uZ2Q/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=oW4ElcVVoI3UohUeCSkOYlPBao_YyBxok-boOJPPgW4

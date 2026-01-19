@@ -1,16 +1,13 @@
----
 apiVersion: 1
 policies:
   - orgId: 1
-    receiver: google-chat
+    receiver: grafana-default-email
     group_by:
       - grafana_folder
       - alertname
-    object_matchers:
-      - - notification/channel
-        - =
-        - google-chat
-      - - notification/enabled
-        - =
-        - "true"
-    repeat_interval: 8h
+    routes:
+      - receiver: Google Chat - Homelab
+        object_matchers:
+          - - "google-chat-enabled"
+            - "="
+            - "true"

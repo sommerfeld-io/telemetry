@@ -98,9 +98,6 @@ groups:
           description: Blackbox Exporter HTTP probe reports a service as no longer up
           summary: Service is no longer up and running
         labels:
-          notification/channel: google-chat
-          notification/enabled: "false"
+          google-chat-enabled: true
           severity: medium
         isPaused: false
-        notification_settings:
-          receiver: google-chat
