@@ -13,6 +13,13 @@ providers:
     deleteFromDatabase: true
     options:
       path: /etc/grafana/provisioning/dashboards
+  - name: devops
+    orgId: 1
+    folder: DevOps
+    type: file
+    deleteFromDatabase: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/devops
   - name: internal
     orgId: 1
     folder: Internal
