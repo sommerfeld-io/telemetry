@@ -6,7 +6,9 @@ The `telemetry` Docker stack is designed to run on a dedicated Raspberry Pi, ser
 | ----------------- | ---- | ----------------------- |
 | Prometheus        | 9090 | <http://localhost:9090> |
 | Grafana           | 3000 | <http://localhost:3000> |
+| Loki              | 3100 | <http://localhost:3100> |
 | Blackbox Exporter | 9115 | <http://localhost:9115> |
+| GitHub Exporter   | 9171 | <http://localhost:9171> |
 
 ## How to start
 
