@@ -45,3 +45,10 @@ tasks:
     cmds:
       - docker compose down --remove-orphans
       - docker compose up
+
+  run:metrics:dev:
+    desc: 'Run the metrics stack for local development'
+    dir: components/metrics-dev
+    cmds:
+      - docker compose down --remove-orphans
+      - docker compose up
