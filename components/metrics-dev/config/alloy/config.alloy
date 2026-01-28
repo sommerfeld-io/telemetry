@@ -1,12 +1,24 @@
-// See https://grafana.com/docs/alloy/latest/reference/components/discovery/discovery.docker
+/*
+ * Global Alloy configuration
+ * enables livedebugging for real-time log viewing
+ */
+livedebugging {
+    enabled = true
+}
 
-// This component is responsible for disovering new containers within the docker environment
+/*
+ * Alloy configuration for collecting Docker container logs and sending them to Loki
+ *
+ * See https://grafana.com/docs/alloy/latest/reference/components/discovery/discovery.docker
+ */
+
+// Discover new containers within the docker environment
 discovery.docker "running_containers" {
 	host = "unix:///var/run/docker.sock"
 	refresh_interval = "5s"
 }
 
-// This component is responsible for relabeling the discovered containers
+// Relabel the discovered containers
 discovery.relabel "running_containers" {
 	targets = []
 
@@ -37,7 +49,7 @@ discovery.relabel "running_containers" {
 	}
 }
 
-// This component is responsible for collecting logs from the discovered containers
+// Collect logs from the discovered containers
 loki.source.docker "running_containers" {
 	host             = "unix:///var/run/docker.sock"
 	targets          = discovery.docker.running_containers.targets
@@ -46,26 +58,22 @@ loki.source.docker "running_containers" {
 	refresh_interval = "5s"
 }
 
-// This component is responsible for processing the logs (In this case adding static labels)
+// Process the logs (In this case adding static labels)
 loki.process "running_containers" {
     stage.static_labels {
         values = {
             env = "dev",
             source = "docker",
             hostname = sys.env("HOSTNAME"),
+            host_ip = sys.env("HOST_IP"),
         }
     }
     forward_to = [loki.write.running_containers.receiver]
 }
 
-// This component is responsible for writing the logs to Loki
+// Write the logs to Loki
 loki.write "running_containers" {
 	endpoint {
 		url  = "http://host.docker.internal:3100/loki/api/v1/push"
 	}
-}
-
-// Enables the ability to view logs in the Alloy UI in realtime
-livedebugging {
-    enabled = true
 }
