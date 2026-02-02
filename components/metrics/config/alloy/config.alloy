@@ -65,7 +65,6 @@ loki.process "running_containers" {
             env = "prod",
             source = "docker",
             hostname = sys.env("HOSTNAME"),
-            host_ip = sys.env("HOST_IP"),
             host_type = sys.env("HOSTTYPE"),
         }
     }
