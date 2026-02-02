@@ -64,29 +64,9 @@ loki.process "running_containers" {
         values = {
             env = "dev",
             source = "docker",
-        }
-    }
-
-    // Extract container_id label to make it available for structured metadata
-    stage.labels {
-        values = {
-            container_id = "",
-        }
-    }
-
-    stage.structured_metadata {
-        values = {
             hostname = sys.env("HOSTNAME"),
-            arch = sys.env("HOSTTYPE"),
-            container_id = "",
         }
     }
-
-    // Drop from labels to avoid creating high cardinality label streams
-    stage.label_drop {
-        values = ["container_id"]
-    }
-
     forward_to = [loki.write.running_containers.receiver]
 }
 
