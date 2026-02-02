@@ -17,8 +17,8 @@ Feel free to use this repository as a starting point for your own configuration.
 
 ## Stacks
 
-- [k6](components/k6/README.md): A load testing setup.
 - [Metrics](components/metrics/README.md): A collection of Exporters to expose metrics from various services.
+- [Metrics Dev](components/metrics-dev/README.md): A collection of Exporters for local development.
 - [Telemetry](components/telemetry/README.md): A complete monitoring stack based on Prometheus, Grafana and Loki.
 
 ## Risks and Technical Debts

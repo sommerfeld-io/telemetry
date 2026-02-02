@@ -12,7 +12,7 @@ providers:
     type: file
     deleteFromDatabase: true
     options:
-      path: /etc/grafana/provisioning/dashboards
+      path: /etc/grafana/provisioning/dashboards/*.yml
   - name: devops
     orgId: 1
     folder: DevOps
