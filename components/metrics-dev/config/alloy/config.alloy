@@ -66,6 +66,7 @@ loki.process "running_containers" {
             source = "docker",
             hostname = sys.env("HOSTNAME"),
             host_ip = sys.env("HOST_IP"),
+            host_type = sys.env("HOSTTYPE"),
         }
     }
     forward_to = [loki.write.running_containers.receiver]
