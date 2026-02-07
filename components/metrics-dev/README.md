@@ -10,4 +10,4 @@ To achieve this, run this development Alloy config from [`docker-compose.yml`](d
 | ----------------- | ---- | ----------------------- | ------------------------------------------------------------------------- |
 | Alloy             | 2345 | <http://localhost:2345> | Different port to avoid conflicts with "real" Alloy instances on the host |
 
-> :zap: **Note**: The development Alloy instance uses port `2345` (instead of `12345`) to avoid conflicts with Alloy instances that might be running on the host machine and provide data to the production setup.
+> :zap: **Note**: The development Alloy instance uses port `2345` (instead of `12345` or `12346`) to avoid conflicts with Alloy instances that might be running on the host machine and provide data to the production setup.

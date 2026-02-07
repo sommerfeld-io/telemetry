@@ -27,9 +27,9 @@ scrape_configs:
         labels:
           group: "docker-metrics"
       - targets:
-          - caprica.fritz.box:12345
-          - kobol.fritz.box:12345
-          - picon.fritz.box:12345
+          - caprica.fritz.box:12346
+          - kobol.fritz.box:12346
+          - picon.fritz.box:12346
         labels:
           group: "alloy-metrics"
 
@@ -52,10 +52,10 @@ scrape_configs:
         labels:
           group: "docker-metrics"
       - targets:
-          - admin-pi.fritz.box:12345
-          - runner-04-pi.fritz.box:12345
-          - runner-05-pi.fritz.box:12345
-          - runner-06-pi5.fritz.box:12345
+          - admin-pi.fritz.box:12346
+          - runner-04-pi.fritz.box:12346
+          - runner-05-pi.fritz.box:12346
+          - runner-06-pi5.fritz.box:12346
         labels:
           group: "alloy-metrics"
 

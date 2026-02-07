@@ -3,7 +3,7 @@ title 'Services Check'
 services = [
   { host: 'host.docker.internal', port: '9100', path: 'metrics', container: 'node_exporter' },
   { host: 'host.docker.internal', port: '9110', path: 'healthz', container: 'cadvisor' },
-  { host: 'host.docker.internal', port: '12345', path: '-/healthy', container: 'alloy' },
+  { host: 'host.docker.internal', port: '12346', path: '-/healthy', container: 'alloy' },
 ]
 protocol = 'http'
 

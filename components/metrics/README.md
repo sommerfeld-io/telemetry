@@ -4,7 +4,7 @@ The `metrics` Docker stack is a Docker Compose configuration that manages all of
 
 | Component     | Port  | URL                      |
 | ------------- | ----- | ------------------------ |
-| Alloy         | 12345 | <http://localhost:12345> |
+| Alloy         | 12346 | <http://localhost:12346> |
 | Node Exporter | 9100  | <http://localhost:9100>  |
 | cAdvisor      | 9110  | <http://localhost:9110>  |
 
