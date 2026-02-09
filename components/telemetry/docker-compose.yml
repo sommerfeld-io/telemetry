@@ -115,7 +115,7 @@ services:
       retries: 6
 
   github_exporter:
-    image: githubexporter/github-exporter:v2.1.0
+    image: githubexporter/github-exporter:v2.2.0
     container_name: github_exporter
     restart: unless-stopped
     depends_on:
